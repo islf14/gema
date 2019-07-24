@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.gema')
 
 @section('content')
 <div class="content-wrapper">
@@ -34,6 +34,19 @@
         <div class="box-body">
           Start creating your amazing application!
         </div>
+
+
+        <a class="dropdown-item" href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">
+            {{ __('Logout') }}
+        </a>
+
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+
+
         <!-- /.box-body -->
         <div class="box-footer">
           Footer
