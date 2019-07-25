@@ -18,7 +18,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'PrincipalController@index')->name('principal');
 
 Route::resource('equipo','EquipoController');
-
+Route::get('equipos','EquipoController@listarequipos');
 
 Route::resource('actividades','ActividadController');
 

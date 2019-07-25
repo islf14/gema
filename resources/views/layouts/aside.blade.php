@@ -52,7 +52,7 @@
                 </ul>
             </li>
 
-            <li class="treeview">
+            <li class="treeview @yield('equipo')">
                 <a href="#">
                     <i class="fa fa-laptop"></i>
                     <span>Equipos</span>
@@ -61,8 +61,8 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                <li><a href="{{url('equipo')}}"><i class="fa fa-circle-o"></i> Listar equipos</a></li>
-                <li><a href="#"><i class="fa fa-circle-o"></i> Registro equipo</a></li>
+                <li class="@yield('equipo_index')"><a href="{{url('equipo')}}"><i class="fa fa-circle-o"></i> Listar equipos</a></li>
+                <li class="@yield('equipo_create')"><a href="{{route('equipo.create')}}"><i class="fa fa-circle-o"></i> Registro equipo</a></li>
                 {{-- <li><a href="../UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
                 <li><a href="../UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
                 <li><a href="../UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li> --}}

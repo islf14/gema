@@ -3,6 +3,14 @@
 @section('title')
     Nuevo Equipo | GEMA
 @endsection
+
+@section('equipo')
+    active
+@endsection
+@section('equipo_create')
+    active
+@endsection
+
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
