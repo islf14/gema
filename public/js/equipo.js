@@ -46,18 +46,13 @@ $(document).ready(function() {
 
     $('#equipos').DataTable( {
         
-        buttons: [
-            'colvis',
-            'excel',
-            'print'
-        ],
-        data: data,
+        ajax: 'equipos',
         columns: [
-            { data: 'name' },
-            { data: 'position' },
-            { data: 'salary' },
-            { data: 'office' },
-            { data: 'office' }
+            { data: 'codigo_pat' },
+            { data: 'nomTipoE' },
+            { data: 'nomDependencia' },
+            { data: 'nomEstado' },
+            { data: 'nomMarca' }
         ]
     } );
 });

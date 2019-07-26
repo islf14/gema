@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
+
+use DB;
 
 class EquipoController extends Controller
 {
@@ -86,25 +90,27 @@ class EquipoController extends Controller
 
     public function listarequipos(){
 
-        $transporte = DB::table('tb_transporte')
-            ->join('tb_persona', 'tb_transporte.idpropietario', '=', 'tb_persona.id')
-            ->join('tb_vehiculo', 'tb_transporte.idvehiculo', '=', 'tb_vehiculo.id')
-            ->join('tb_asociacion', 'tb_transporte.idasociacion', '=', 'tb_asociacion.id')
-            ->select('tb_persona.PERnombres','tb_persona.PERapellidos','tb_persona.PERDNI','tb_persona.PERtelefono', 'tb_vehiculo.VEHplaca', 'tb_transporte.TRAtarjunicirculacion', 'tb_asociacion.ASOnombre', 'tb_transporte.id')
+        $equipo = DB::connection('mysql')->table('tb_equipo')
+            ->join('tb_tipoequipo', 'tb_equipo.TipoEquipo_idTipoEquipo', '=', 'tb_tipoequipo.idTipoEquipo')
+            ->join('tb_dependencia', 'tb_equipo.Dependencia_idDependencia', '=', 'tb_dependencia.idDependencia')
+            ->join('tb_estado', 'tb_equipo.Estado_idEstado', '=', 'tb_estado.idEstado')
+            ->join('tb_marca', 'tb_equipo.Marca_idMarca', '=', 'tb_marca.idMarca')
+            ->select('tb_equipo.codigo_pat',
+            'tb_tipoequipo.nomTipoE',
+            'tb_dependencia.nomDependencia',
+            'tb_estado.nomEstado',
+            'tb_marca.nomMarca')
             ->get();
         
-        $TRADtable = array();
-        foreach ($transporte as $key => $TRA) {
-            $TRADtable[$key]['id']=$TRA->id;
-            $TRADtable[$key]['nrocirculacion']=$TRA->TRAtarjunicirculacion;
-            $TRADtable[$key]['dni']=$TRA->PERDNI;
-            $TRADtable[$key]['nomape']=$TRA->PERapellidos.', '.$TRA->PERnombres;
-            $TRADtable[$key]['placa']=$TRA->VEHplaca;
-            $TRADtable[$key]['telefono']=$TRA->PERtelefono;
-            $TRADtable[$key]['asociacion']=$TRA->ASOnombre;
-        }
-        return datatables()->of($TRADtable)->toJson();
-
-
+        // $itemDtable = array();
+        // foreach ($equipo as $key => $item) {
+        //     $itemDtable[$key]['codigo_pat']=$item->codigo_pat;
+        //     $itemDtable[$key]['nomTipoE']=$item->nomTipoE;
+        //     $itemDtable[$key]['nomDependencia']=$item->nomDependencia;
+        //     $itemDtable[$key]['nomEstado']=$item->nomEstado;
+        //     $itemDtable[$key]['nomMarca']=$item->nomMarca;
+        // }
+        // dd($itemDtable);
+        return datatables()->of($equipo)->toJson();
     }
 }

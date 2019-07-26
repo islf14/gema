@@ -47,11 +47,11 @@
               <table id="equipos" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
+                  <th>Código Pat.</th>
+                  <th>Tipo Equipo</th>
+                  <th>Dependencia</th>
+                  <th>Estado</th>
+                  <th>Marca</th>
                 </tr>
                 </thead>
                 <tbody>
