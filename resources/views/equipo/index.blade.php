@@ -55,7 +55,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+
+                {{-- <tr>
                   <td>Trident</td>
                   <td>Internet
                     Explorer 4.0
@@ -90,7 +91,7 @@
                   <td>Win 98+</td>
                   <td>6</td>
                   <td>A</td>
-                </tr>
+                </tr> --}}
                 
                 </tbody>
                 <tfoot>
