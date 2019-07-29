@@ -14,6 +14,7 @@ class PersonaController extends Controller
     public function index()
     {
         //
+        return view('persona.index');
     }
 
     /**

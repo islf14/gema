@@ -35,7 +35,7 @@
                 </a>
                 <ul class="treeview-menu">
                 <li class="@yield('principal')"><a href="{{route('principal')}}"><i class="fa fa-circle-o"></i>Dashboard</a></li>
-                <li><a href="#"><i class="fa fa-circle-o"></i>##</a></li>
+                {{-- <li><a href="#"><i class="fa fa-circle-o"></i>##</a></li> --}}
                 </ul>
             </li>
 
@@ -69,7 +69,7 @@
                 </ul>
             </li>
 
-            <li class="treeview">
+            <li class="treeview @yield('persona')">
                 <a href="#">
                 <i class="fa fa-user"></i> <span>Usuarios</span>
                 <span class="pull-right-container">
@@ -77,9 +77,9 @@
                 </span>
                 </a>
                 <ul class="treeview-menu">
-                <li><a href="../forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
-                <li><a href="../forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-                <li><a href="../forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
+                <li class="@yield('persona_index')"><a href="{{url('persona')}}"><i class="fa fa-circle-o"></i>Listar usuarios</a></li>
+                {{-- <li><a href="../forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li> --}}
+                {{-- <li><a href="../forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li> --}}
                 </ul>
             </li>
 
@@ -92,10 +92,10 @@
                 </span>
                 </a>
                 <ul class="treeview-menu">
-                <li><a href="../layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-                <li><a href="../layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-                <li><a href="../layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-                <li><a href="../layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i> Boxed</a></li>
+                {{-- <li><a href="../layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li> --}}
+                {{-- <li><a href="../layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li> --}}
                 </ul>
             </li>
 

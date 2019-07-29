@@ -22,6 +22,8 @@ Route::get('equipos','EquipoController@listarequipos');
 
 Route::resource('actividades','ActividadController');
 
+Route::resource('persona','PersonaController');
+
 // Route::get('actividades')
 
 Auth::routes();
