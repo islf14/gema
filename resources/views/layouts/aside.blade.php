@@ -69,17 +69,20 @@
                 </ul>
             </li>
 
-            <li class="treeview @yield('persona')">
+            <li class="treeview @yield('usuario')">
                 <a href="#">
-                <i class="fa fa-user"></i> <span>Usuarios</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                </span>
+                    <i class="fa fa-user"></i> <span>Usuarios</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
-                <li class="@yield('persona_index')"><a href="{{url('persona')}}"><i class="fa fa-circle-o"></i>Listar usuarios</a></li>
-                {{-- <li><a href="../forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li> --}}
-                {{-- <li><a href="../forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li> --}}
+                    @can('users.index')                    
+                    <li class="@yield('usuario_index')"><a href="{{route('users.index')}}"><i class="fa fa-circle-o"></i>Listar usuarios</a></li>
+                    @endcan
+
+                    {{-- <li><a href="../forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li> --}}
+                    {{-- <li><a href="../forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li> --}}
                 </ul>
             </li>
 

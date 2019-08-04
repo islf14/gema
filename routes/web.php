@@ -14,18 +14,30 @@
 Route::get('/welcome', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'PrincipalController@index')->name('principal');
 
-Route::resource('equipo','EquipoController');
-Route::get('equipos','EquipoController@listarequipos');
+Route::middleware(['auth'])->group(function () {
+        
+    Route::resource('equipo','EquipoController');
+    Route::get('equipos','EquipoController@listarequipos');
+    Route::resource('actividades','ActividadController');
 
-Route::resource('actividades','ActividadController');
+    // Route::resource('usuario','UserController');
+    
+    // Route::group(['middleware' => ['permiso:users.index']], function(){
+    //     Route::get('notas/{id}/eliminar','NotasController@destroy')->name('notas.eliminar');
+    // });
+    Route::get('usuario', 'UserController@index')->name('users.index')
+		->middleware('permiso:users.index');
 
-Route::resource('persona','PersonaController');
+    Route::get('/usuarios','UserController@listusers')->name('listusers');
+
+});
 
 // Route::get('actividades')
-
-Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');

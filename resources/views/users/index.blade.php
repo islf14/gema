@@ -10,10 +10,10 @@
   {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/b-1.5.6/sl-1.3.0/datatables.min.css"/> --}}
 @endsection
 
-@section('persona')
+@section('usuario')
     active
 @endsection
-@section('persona_index')
+@section('usuario_index')
     active
 @endsection
 @section('content')
@@ -21,7 +21,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        persona index
+        Usuario index
         <small>it all starts here</small>
       </h1>
       <ol class="breadcrumb">
@@ -44,12 +44,20 @@
             <div class="row">
               <div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Quick Example</h3>
+                  <h3 class="box-title">Nuevo Usuario</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
                 <form role="form">
                   <div class="box-body">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Nombres</label>
+                      <input type="text" class="form-control" id="name" placeholder="Nombre">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Apellidos</label>
+                      <input type="text" class="form-control" id="lastname" placeholder="Apellidos">
+                    </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Email address</label>
                       <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
@@ -95,7 +103,7 @@
     <section class="content">
       <h3>plantilla</h3>
       <div>
-        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">Nuevo</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">Nuevo</button>
         {{-- <button type="button" class="btn btn-primary">Nuevo</button> --}}
       </div>
       <div class="row">
@@ -109,22 +117,27 @@
               <table id="personas" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th>Código Pat.</th>
-                    <th>Tipo Equipo</th>
-                    <th>Dependencia</th>
-                    <th>Estado</th>
-                    <th>Marca</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Email</th>
+                    <th>DNI</th>
+                    <th>Ver</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
                   </tr>
                 </thead>
                 <tbody id="users">
+                  
                 </tbody>
                 <tfoot>
                   <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>
-                    <th>CSS grade</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Email</th>
+                    <th>DNI</th>
+                    <th>Ver</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
                   </tr>
                 </tfoot>
               </table>
@@ -144,7 +157,7 @@
 
 @section('script')
   <!-- DataTables -->
-  <script src="{{asset('js/persona.js')}}"></script>
+  <script src="{{asset('js/users.js')}}"></script>
   {{-- <script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script> --}}
   {{-- <script src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script> --}}
   {{-- <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/b-1.5.6/sl-1.3.0/datatables.min.js"></script> --}}

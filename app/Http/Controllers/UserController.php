@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
-class PersonaController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class PersonaController extends Controller
     public function index()
     {
         //
-        return view('persona.index');
+        return view('users.index');
     }
 
     /**
@@ -25,6 +26,7 @@ class PersonaController extends Controller
     public function create()
     {
         //
+        
     }
 
     /**
@@ -36,6 +38,11 @@ class PersonaController extends Controller
     public function store(Request $request)
     {
         //
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
     }
 
     /**
@@ -81,5 +88,24 @@ class PersonaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function listusers(){
+        // return "hola";
+        $users = User::all();
+        
+        // return $users;
+        $itemDtable = array();
+        foreach ($users as $key => $item) {
+            $itemDtable[$key]['id']=$item->id;
+            $itemDtable[$key]['name']=$item->name;
+            $itemDtable[$key]['last_name']=$item->last_name;
+            $itemDtable[$key]['email']=$item->email;
+            $itemDtable[$key]['dni']=$item->dni;
+        }
+        // dd($itemDtable);
+        // return datatables()->of($itemDtable)->toJson();
+        $jsonstring = json_encode($itemDtable);
+        return $jsonstring;
     }
 }
