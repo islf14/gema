@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 02-08-2019 a las 02:52:59
+-- Tiempo de generación: 04-08-2019 a las 22:43:26
 -- Versión del servidor: 5.7.18-log
--- Versión de PHP: 7.1.10
+-- Versión de PHP: 7.3.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -67,6 +67,13 @@ CREATE TABLE `model_has_roles` (
   `model_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `model_has_roles`
+--
+
+INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
+(1, 'App\\User', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -93,6 +100,32 @@ CREATE TABLE `permissions` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(1, 'users.index', 'web', '2019-08-05 00:52:35', '2019-08-05 00:52:35'),
+(2, 'users.show', 'web', '2019-08-05 00:52:35', '2019-08-05 00:52:35'),
+(3, 'users.create', 'web', '2019-08-05 00:52:35', '2019-08-05 00:52:35'),
+(4, 'users.edit', 'web', '2019-08-05 00:52:35', '2019-08-05 00:52:35'),
+(5, 'users.destroy', 'web', '2019-08-05 00:52:35', '2019-08-05 00:52:35'),
+(6, 'roles.index', 'web', '2019-08-05 00:52:35', '2019-08-05 00:52:35'),
+(7, 'roles.show', 'web', '2019-08-05 00:52:35', '2019-08-05 00:52:35'),
+(8, 'roles.create', 'web', '2019-08-05 00:52:35', '2019-08-05 00:52:35'),
+(9, 'roles.edit', 'web', '2019-08-05 00:52:35', '2019-08-05 00:52:35'),
+(10, 'roles.destroy', 'web', '2019-08-05 00:52:35', '2019-08-05 00:52:35'),
+(11, 'device.index', 'web', '2019-08-05 00:52:35', '2019-08-05 00:52:35'),
+(12, 'device.show', 'web', '2019-08-05 00:52:35', '2019-08-05 00:52:35'),
+(13, 'device.create', 'web', '2019-08-05 00:52:35', '2019-08-05 00:52:35'),
+(14, 'device.edit', 'web', '2019-08-05 00:52:35', '2019-08-05 00:52:35'),
+(15, 'device.destroy', 'web', '2019-08-05 00:52:35', '2019-08-05 00:52:35'),
+(16, 'activity.index', 'web', '2019-08-05 00:52:35', '2019-08-05 00:52:35'),
+(17, 'activity.show', 'web', '2019-08-05 00:52:35', '2019-08-05 00:52:35'),
+(18, 'activity.create', 'web', '2019-08-05 00:52:35', '2019-08-05 00:52:35'),
+(19, 'activity.edit', 'web', '2019-08-05 00:52:36', '2019-08-05 00:52:36'),
+(20, 'activity.destroy', 'web', '2019-08-05 00:52:36', '2019-08-05 00:52:36');
+
 -- --------------------------------------------------------
 
 --
@@ -113,7 +146,8 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
 (1, 'Super Admin', 'web', '2019-08-02 06:40:48', '2019-08-02 06:40:48'),
-(2, 'Administrador', 'web', '2019-08-02 07:04:12', '2019-08-02 07:04:12');
+(2, 'Administrador', 'web', '2019-08-02 07:04:12', '2019-08-02 07:04:12'),
+(3, 'usuario', 'web', '2019-08-05 00:32:23', '2019-08-05 00:32:23');
 
 -- --------------------------------------------------------
 
@@ -372,9 +406,9 @@ INSERT INTO `tb_tipoequipo` (`idTipoEquipo`, `nomTipoE`) VALUES
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lastname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `num_cel` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `dni` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nivel` int(11) DEFAULT NULL,
   `cargoid` int(11) DEFAULT NULL,
@@ -389,9 +423,13 @@ CREATE TABLE `users` (
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `last_name`, `email`, `num_cel`, `dni`, `nivel`, `cargoid`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', NULL, 'admin@mdcgal.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$cI5JrXNVKhVMASMgRm0fR.TstsJgfTowjDdEZAkaNi0lhTennW91C', NULL, '2019-07-20 00:14:17', '2019-07-20 00:14:17'),
-(2, 'user', NULL, 'user@mdcgal.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$d/fQcCU9CPDl0jm6BnAN7e5BmgLrxF/tRi6.sBBICEPMILlRtyK2C', NULL, '2019-07-25 21:54:44', '2019-07-25 21:54:44');
+INSERT INTO `users` (`id`, `name`, `lastname`, `email`, `phone`, `dni`, `nivel`, `cargoid`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'SuperAdmin', 'Ad', 'superadmin@mdcgal.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$cI5JrXNVKhVMASMgRm0fR.TstsJgfTowjDdEZAkaNi0lhTennW91C', NULL, '2019-07-20 00:14:17', '2019-07-20 00:14:17'),
+(2, 'user', 'us', 'user@mdcgal.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$d/fQcCU9CPDl0jm6BnAN7e5BmgLrxF/tRi6.sBBICEPMILlRtyK2C', NULL, '2019-07-25 21:54:44', '2019-07-25 21:54:44'),
+(3, 'admin', NULL, 'admin@mdcgal.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$386LIAJ9cvwSkYLyIIureeOOi/ojNql5/B.ArqbIeoWnfAysI69i.', NULL, '2019-08-05 00:34:17', '2019-08-05 00:34:17'),
+(4, 'usuario2', NULL, 'user2@mdcgal.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$iBzN6to8SEFnt6PxIT3Pme5HYJ1s8TajofmuJ2miLnNggP/MmDhay', NULL, '2019-08-05 03:10:39', '2019-08-05 03:10:39'),
+(5, 'usuario3', NULL, 'user3@mdcgal.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$HIvMFIxlJ.rHCbbR40Z9IeH5ChH02V85V7wy3Lj/7WPxi6nDSHFQq', NULL, '2019-08-05 03:28:21', '2019-08-05 03:28:21'),
+(6, 'usuario4', 'usuario', 'user4@mdcgal.com', NULL, '23435423', NULL, NULL, NULL, '$2y$10$5gENwDKzWPpGp1pf2fenb.oa8H8ZWlJPbXd031A9imbqEuy5XhQ2e', NULL, '2019-08-05 03:36:27', '2019-08-05 03:36:27');
 
 -- --------------------------------------------------------
 
@@ -553,71 +591,85 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `tb_cargo`
 --
 ALTER TABLE `tb_cargo`
   MODIFY `idCargo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT de la tabla `tb_dependencia`
 --
 ALTER TABLE `tb_dependencia`
   MODIFY `idDependencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT de la tabla `tb_equipo`
 --
 ALTER TABLE `tb_equipo`
   MODIFY `idEquipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT de la tabla `tb_estado`
 --
 ALTER TABLE `tb_estado`
   MODIFY `idEstado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `tb_marca`
 --
 ALTER TABLE `tb_marca`
   MODIFY `idMarca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT de la tabla `tb_procesador`
 --
 ALTER TABLE `tb_procesador`
   MODIFY `idProcesador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
 --
 -- AUTO_INCREMENT de la tabla `tb_registro`
 --
 ALTER TABLE `tb_registro`
   MODIFY `idRegistro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT de la tabla `tb_so`
 --
 ALTER TABLE `tb_so`
   MODIFY `idSO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT de la tabla `tb_tipoequipo`
 --
 ALTER TABLE `tb_tipoequipo`
   MODIFY `idTipoEquipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- Restricciones para tablas volcadas
 --
