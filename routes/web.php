@@ -20,24 +20,35 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'PrincipalController@index')->name('principal');
 
+
 Route::middleware(['auth'])->group(function () {
         
-    Route::resource('equipo','EquipoController');
-    Route::get('equipos','EquipoController@listarequipos');
-    Route::resource('actividades','ActividadController');
+  Route::resource('equipo','EquipoController');
+  Route::get('equipos','EquipoController@listarequipos');
+  Route::resource('actividades','ActividadController');
 
-    // Route::resource('usuario','UserController');
-    
-    // Route::group(['middleware' => ['permiso:users.index']], function(){
-    //     Route::get('notas/{id}/eliminar','NotasController@destroy')->name('notas.eliminar');
-    // });
-    Route::get('usuario', 'UserController@index')->name('users.index')
-		->middleware('permiso:users.index');
+  //Users
+  Route::get('usuario', 'UserController@index')->name('users.index')
+    ->middleware('permiso:users.index');
 
-    Route::get('/usuarios','UserController@listusers')->name('listusers');
+  Route::get('usuario/{id}', 'UserController@show')->name('users.show')
+    ->middleware('permiso:users.show');
+
+  Route::get('usuario/{id}/edit','UserController@edit')->name('users.edit')
+    ->middleware('permiso:users.edit');
+
+  Route::put('usuario/{id}', 'UserController@update')->name('users.update')
+		->middleware('permission:users.edit');
+
+  Route::delete('usuario/{id}','UserController@destroy')->name('users.destroy')
+    ->middleware('permiso:users.destroy');
+
+  Route::get('usuarios','UserController@listusers')->name('listusers');
 
 });
 
-// Route::get('actividades')
-
-// Route::get('/home', 'HomeController@index')->name('home');
+// Route::resource('usuario','UserController');
+// 
+// Route::group(['middleware' => ['permiso:users.index']], function(){
+//     Route::get('notas/{id}/eliminar','NotasController@destroy')->name('notas.eliminar');
+// });
