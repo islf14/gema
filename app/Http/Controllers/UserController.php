@@ -67,8 +67,14 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
+        $hasroles = $user->getRoleNames();
         $roles = Role::get();
-        return view('users.edit', compact('user','roles'));
+        $makeroles = array();        
+        foreach($hasroles as $rol){
+            $makeroles[] = $rol;
+        }
+        // dd($makeroles);
+        return view('users.edit', compact('user','roles','hasroles','makeroles'));
     }
 
     /**
@@ -81,6 +87,10 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+       
+        dd($request);
+        //User::find($id)->update($request->all());
+         return "update";
     }
 
     /**
