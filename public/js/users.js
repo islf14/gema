@@ -19,20 +19,20 @@ $(document).ready(function () {
                 <td>${task.email}</td>
                 <td>${task.dni}</td>
                 <td>
-                  <a href='usuario/${task.id}' class='btn btn-info'><i class='fa fa-newspaper-o'></i> Ver </a>
+                  <button type="button" class="btn-show btn btn-info" data-toggle="modal" data-target="#modal-default"><i class='fa fa-newspaper-o'></i> Ver</button>
                 </td>
                 <td>
                   <a href='usuario/${task.id}/edit' class='btn btn-success'><i class='fa fa-edit'></i> Editar </a>
                 </td>
                 <td>
-                  <button class="btn-delete btn btn-danger">Delete</button>
+                  <button class="btn-delete btn btn-danger"><i class='fa fa-trash-o'></i> Delete</button>
                 </td>
             </tr>
           `
         });
         $('#users').html(template);
       }
-    })
+    });
   }
 
   $(document).on('click', '.btn-delete', function () {
@@ -55,7 +55,39 @@ $(document).ready(function () {
     }
   });
 
+  $(document).on('click', '.btn-show', function () {
+    clean();
+    let element = $(this)[0].parentElement.parentElement;
+    let id = $(element).attr('taskId');
+    let url = 'usuario/' + id;
+    var token = $('meta[name="csrf-token"]').attr('content');
+    $.ajax({
+      url: url,
+      type: 'GET',
+      headers: { 'X-CSRF-TOKEN': token },
+      success: function (response) {
+        let data = JSON.parse(response);
+        // console.log(data);
+        $('#nombres').text(data[0][0]);
+        $('#apellidos').text(data[0][1]);
+        $('#dni').text(data[0][2]);
+        $('#telefono').text(data[0][3]);
+        $('#email').text(data[0][4]);
+        data[1].forEach(element => {
+          $("#roles").append("<li>"+ element +"</li>"); 
+        });
+      }
+    });
 
+  });
 
+  function clean(){
+    $('#nombres').text("");
+    $('#apellidos').text("");
+    $('#dni').text("");
+    $('#telefono').text("");
+    $('#email').text("");
+    $("#roles").empty();
+  }
 
 });

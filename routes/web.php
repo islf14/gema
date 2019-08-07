@@ -27,6 +27,7 @@ Route::middleware(['auth'])->group(function () {
   Route::get('equipos','EquipoController@listarequipos');
   Route::resource('actividades','ActividadController');
 
+
   //Users
   Route::get('usuario', 'UserController@index')->name('users.index')
     ->middleware('permiso:users.index');
@@ -44,6 +45,35 @@ Route::middleware(['auth'])->group(function () {
     ->middleware('permiso:users.destroy');
 
   Route::get('usuarios','UserController@listusers')->name('listusers');
+
+
+  //Roles
+  Route::get('rol', 'RoleController@index')->name('roles.index')
+    ->middleware('permiso:roles.index');
+
+  Route::get('rol/create', 'RoleController@create')->name('roles.create')
+    ->middleware('permiso:roles.create');
+    
+  Route::post('rol/store', 'RoleController@store')->name('roles.store')
+    ->middleware('permiso:roles.create');
+    
+	Route::get('rol/{role}', 'RoleController@show')->name('roles.show')
+		->middleware('permiso:roles.show');
+
+  Route::get('rol/{role}/edit', 'RoleController@edit')->name('roles.edit')
+    ->middleware('permiso:roles.edit');
+
+	Route::put('rol/{role}', 'RoleController@update')->name('roles.update')
+    ->middleware('permiso:roles.edit');
+
+	Route::delete('rol/{role}', 'RoleController@destroy')->name('roles.destroy')
+    ->middleware('permiso:roles.destroy');
+    
+	Route::get('roles', 'RoleController@listroles')->name('roles.destroy')
+		->middleware('permiso:roles.destroy');
+
+
+    
 
 });
 

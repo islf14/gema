@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -54,8 +55,25 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
-        return("en show");
+        $user = User::find($id);
+        $hasroles = $user->getRoleNames();
+
+        $userdata[0] = $user->name;
+        $userdata[1] = $user->lastname;
+        $userdata[2] = $user->dni;
+        $userdata[3] = $user->phone;
+        $userdata[4] = $user->email;
+
+        $makeroles = array();        
+        foreach($hasroles as $rol){
+            $makeroles[] = $rol;
+        }
+
+        $datos[0]=$userdata;
+        $datos[1]=$makeroles;
+
+        $jsonstring = json_encode($datos);
+        return $jsonstring;//okok
     }
 
     /**
@@ -73,8 +91,7 @@ class UserController extends Controller
         foreach($hasroles as $rol){
             $makeroles[] = $rol;
         }
-        // dd($makeroles);
-        return view('users.edit', compact('user','roles','hasroles','makeroles'));
+        return view('users.edit', compact('user','roles','hasroles','makeroles'));//okok
     }
 
     /**
@@ -86,11 +103,17 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-       
-        dd($request);
-        //User::find($id)->update($request->all());
-         return "update";
+        $user = User::find($id);
+        $datos["name"] = $request->name;
+        $datos["lastname"] = $request->lastname;
+        $datos["dni"] = $request->dni;
+        $datos["phone"] = $request->phone;
+        if($request->password != null){
+            $datos['password'] = Hash::make($request->password);
+        }
+        $user->update($datos);//actualiza datos
+        $user->syncRoles($request->roles);//asigna nuevos roles
+        return redirect()->route('users.index');//okok
     }
 
     /**
@@ -102,15 +125,11 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::find($id)->delete();
-        return "eliminado";
-        
+        return "eliminado";//okok
     }
 
     public function listusers(){
-        // return "hola";
         $users = User::all();
-        
-        // return $users;
         $itemDtable = array();
         foreach ($users as $key => $item) {
             $itemDtable[$key]['id']=$item->id;
@@ -122,6 +141,6 @@ class UserController extends Controller
         // dd($itemDtable);
         // return datatables()->of($itemDtable)->toJson();
         $jsonstring = json_encode($itemDtable);
-        return $jsonstring;
+        return $jsonstring;//okok
     }
 }

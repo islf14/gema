@@ -78,7 +78,10 @@
                 </a>
                 <ul class="treeview-menu">
                     @can('users.index')                    
-                    <li class="@yield('usuario_index')"><a href="{{route('users.index')}}"><i class="fa fa-circle-o"></i>Listar usuarios</a></li>
+                        <li class="@yield('usuario_index')"><a href="{{route('users.index')}}"><i class="fa fa-circle-o"></i>Listar usuarios</a></li>
+                    @endcan
+                    @can('roles.index')
+                        <li class="@yield('roles_index')"><a href="{{route('roles.index')}}"><i class="fa fa-circle-o"></i>Listar roles</a></li>
                     @endcan
 
                     {{-- <li><a href="../forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li> --}}
