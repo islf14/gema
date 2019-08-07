@@ -78,7 +78,7 @@
                 </div>
                 <div class="box-body">
                   <div class="form-group">
-                      <ul id="roles"></ul>
+                      <ul id="hasroles"></ul>
                   </div>
                 </div>
               </div>
@@ -108,7 +108,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="personas" class="table table-bordered table-striped">
+              <table id="" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th>Nombres</th>
@@ -120,7 +120,7 @@
                     <th>Eliminar</th>
                   </tr>
                 </thead>
-                <tbody id="users">
+                <tbody id="tableusers">
                   
                 </tbody>
                 {{-- <tfoot>

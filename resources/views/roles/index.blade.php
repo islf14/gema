@@ -29,7 +29,7 @@
       </ol>
     </section>
 
-    <div class="modal fade" id="modal-new">
+    <div class="modal fade" id="modalnew">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -37,7 +37,8 @@
               <span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">Nuevo rol</h4>
           </div>
-          <div class="modal-body">
+          <form id="formnewuser">
+            <div class="modal-body">
               <div class="box box-primary">
                 <div class="box-header with-border">
                 </div>
@@ -50,16 +51,18 @@
                   </div>
                 </div> 
               </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="SaveUser">Save changes</button>
+            </div>
+          </form>  
+
         </div>
       </div>
     </div>
 
-    <div class="modal fade" id="modal-see">
+    <div class="modal fade" id="modalsee">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -94,7 +97,7 @@
                 </div>
                 <div class="box-body">
                   <div class="form-group">
-                      <ul id="roles"></ul>
+                      <ul id="hasroles"></ul>
                   </div>
                 </div>
               </div>
@@ -110,7 +113,7 @@
 
     <section class="content">
       <div>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-new">Nuevo</button>
+        <button type="button" id="btnModalNew" class="btn btn-primary" data-toggle="modal" data-target="#modalnew">Nuevo</button>
       </div>
       <div class="box-header with-border">
       </div>
@@ -122,7 +125,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="roless" class="table table-bordered table-striped">
+              <table id="" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th>Nombres</th>
@@ -131,7 +134,7 @@
                     <th>Eliminar</th>
                   </tr>
                 </thead>
-                <tbody id="roles">
+                <tbody id="tableroles">
                   
                 </tbody>
               </table>

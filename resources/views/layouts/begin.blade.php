@@ -30,7 +30,8 @@
 	</div>
 </div>
 {{-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> --}}
-<script src="{{asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+{{-- <script src="{{asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script> --}}
+{{-- <script src="{{asset('bower_components/bootstrap-4.3.1/js/bootstrap.min.js')}}"></script> --}}
 {{-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> --}}
 <script src="{{asset('bower_components/jquery/dist/jquery-3.4.1.js')}}"></script>
 </body>

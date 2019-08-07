@@ -35,7 +35,8 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Role::create(['name' => $request->name]);
+        return "guardado";
     }
 
     /**
@@ -57,7 +58,11 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $role = Role::find($id);
+        $permissions = $role->getPermissionNames();
+        
+        dd($role);
+        return "en edit role";
     }
 
     /**
@@ -70,6 +75,7 @@ class RoleController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $role->syncPermissions($permissions);
     }
 
     /**
@@ -80,7 +86,8 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Role::find($id)->delete();
+        return "eliminado";
     }
     
     public function listroles(){

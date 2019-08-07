@@ -30,7 +30,7 @@ $(document).ready(function () {
             </tr>
           `
         });
-        $('#users').html(template);
+        $('#tableusers').html(template);
       }
     });
   }
@@ -74,7 +74,7 @@ $(document).ready(function () {
         $('#telefono').text(data[0][3]);
         $('#email').text(data[0][4]);
         data[1].forEach(element => {
-          $("#roles").append("<li>"+ element +"</li>"); 
+          $("#hasroles").append("<li>"+ element +"</li>"); 
         });
       }
     });
