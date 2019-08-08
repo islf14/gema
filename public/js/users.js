@@ -8,23 +8,24 @@ $(document).ready(function () {
       type: 'GET',
       success: function (response) {
         let tasks = JSON.parse(response);
-        console.log(tasks);
+        // console.log(tasks);
         let template = '';
         tasks.forEach(task => {
           // console.log(task.id);
           template += `
             <tr taskId=${task.id}>
+                <td>${task.id}</td>
                 <td>${task.name}</td>
                 <td>${task.last_name}</td>
                 <td>${task.email}</td>
                 <td>${task.dni}</td>
-                <td>
+                <td width="10px">
                   <button type="button" class="btn-show btn btn-info" data-toggle="modal" data-target="#modal-default"><i class='fa fa-newspaper-o'></i> Ver</button>
                 </td>
-                <td>
+                <td width="10px">
                   <a href='usuario/${task.id}/edit' class='btn btn-success'><i class='fa fa-edit'></i> Editar </a>
                 </td>
-                <td>
+                <td width="10px">
                   <button class="btn-delete btn btn-danger"><i class='fa fa-trash-o'></i> Delete</button>
                 </td>
             </tr>
@@ -39,7 +40,7 @@ $(document).ready(function () {
     if (confirm('¿Estás seguro de eliminar usuario?')) {
       let element = $(this)[0].parentElement.parentElement;
       let id = $(element).attr('taskId');
-      let url = 'usuario/'+id;
+      let url = 'usuario/delete/'+id;
       var token = $('meta[name="csrf-token"]').attr('content');
       $.ajax({
         url: url,
@@ -47,8 +48,11 @@ $(document).ready(function () {
         type: 'DELETE',  // user.destroy
         success: function (result) {
           console.log(result);
-          if("eliminado" == result){
+          if("true" == result){
             fetchUsers();
+          }
+          else{
+            alert("No se pudo eliminar");
           }
         }
       });

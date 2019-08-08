@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
@@ -47,7 +48,22 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        //
+        $role = Role::find($id);
+        $getpermissions = $role->getPermissionNames();
+
+        $roledata[0] = $role->name;
+        $roledata[1] = $role->guard_name;
+
+        $haspermissions = array();        
+        foreach($getpermissions as $permission){
+            $haspermissions[] = $permission;
+        }
+
+        $datos[0]=$roledata;
+        $datos[1]=$haspermissions;
+
+        $jsonstring = json_encode($datos);
+        return $jsonstring;//okok
     }
 
     /**
@@ -59,10 +75,13 @@ class RoleController extends Controller
     public function edit($id)
     {
         $role = Role::find($id);
-        $permissions = $role->getPermissionNames();
-        
-        dd($role);
-        return "en edit role";
+        $permissions = Permission::get();
+        $getpermissions = $role->getPermissionNames();
+        $haspermissions = array();        
+        foreach($getpermissions as $permission){
+            $haspermissions[] = $permission;
+        }
+        return view('roles.edit', compact('role','permissions','haspermissions'));
     }
 
     /**
@@ -74,8 +93,11 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        $role->syncPermissions($permissions);
+        $role = Role::find($id);
+        $datos["name"] = $request->name;
+        $role->update($datos);//actualiza datos
+        $role->syncPermissions($request->permissions);//asigna nuevos permisos
+        return redirect()->route('roles.index');//okok
     }
 
     /**

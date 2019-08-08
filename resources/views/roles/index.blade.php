@@ -44,7 +44,7 @@
                 </div>
                 <div class="box-body">
                   <div class="form-group">
-                      <label for="name">Nombres</label>
+                      <label for="name">Nombre de rol</label>
                       <input type="text" class="form-control" id="name" name="name" placeholder="Nombres" value="">
                   </div>
                   <div class="box-header with-border">
@@ -79,12 +79,12 @@
                 <div class="box-body">
                   <table class="table">
                     <tr>
-                      <th><i>Nombres</i></th>
-                      <th id="nombres"></th>
+                      <th><i>Nombre de rol</i></th>
+                      <th id="nombre_rol"></th>
                     </tr>
                     <tr>
-                      <th><i>Apellidos</i></th>
-                      <th id="apellidos"></th>
+                      <th><i>Guard_name</i></th>
+                      <th id="guard_name"></th>
                     </tr> 
                   </table>
 
@@ -93,18 +93,18 @@
                   
                 </div> 
                 <div class="box-header with-border">
-                  <h3 class="box-title">Roles</h3>
+                  <h3 class="box-title">Permisos</h3>
                 </div>
                 <div class="box-body">
                   <div class="form-group">
-                      <ul id="hasroles"></ul>
+                      <ul id="haspermissions"></ul>
                   </div>
                 </div>
               </div>
 
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
             {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
           </div>
         </div>

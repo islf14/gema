@@ -11,18 +11,21 @@
 |
 */
 
-Route::get('/welcome', function () {
-    return view('welcome');
-});
+// Route::get('/welcome', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/', 'PrincipalController@index')->name('principal');
-
-
 Route::middleware(['auth'])->group(function () {
-        
+
+  Route::get('/bienvenido', function () {
+    return view('bienvenido');
+  });
+
+  Route::get('/home', 'HomeController@index')->name('home');
+  Route::get('/', 'PrincipalController@index')->name('principal');
+
   Route::resource('equipo','EquipoController');
   Route::get('equipos','EquipoController@listarequipos');
   Route::resource('actividades','ActividadController');
@@ -41,11 +44,14 @@ Route::middleware(['auth'])->group(function () {
   Route::post('usuario/update/{id}', 'UserController@update')->name('users.update')
 		->middleware('permiso:users.edit');
 
-  Route::delete('usuario/{id}','UserController@destroy')->name('users.destroy')
+  Route::delete('usuario/delete/{id}','UserController@destroy')->name('users.destroy')
     ->middleware('permiso:users.destroy');
 
   Route::get('usuarios','UserController@listusers')->name('users.list')
     ->middleware('permiso:users.list');
+
+  Route::get('usuarios/test','UserController@test')->name('users.test')
+    ->middleware('permiso:users.test');
 
   //Roles
   Route::get('rol', 'RoleController@index')->name('roles.index')

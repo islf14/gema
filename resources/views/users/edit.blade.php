@@ -82,7 +82,7 @@
                       @foreach ($roles as $item)
                         <div class="checkbox">
                           <label>
-                            <input name="roles[]" type="checkbox" value="{{$item->name}}" {{ in_array($item->name, $makeroles) ? 'checked':'' }} >
+                            <input name="roles[]" type="checkbox" value="{{$item->name}}" {{ in_array($item->name, $hasroles) ? 'checked':'' }} >
                             {{$item->name}}
                           </label>
                         </div>

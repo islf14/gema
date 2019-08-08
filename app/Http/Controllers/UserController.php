@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\QueryException;
 
 class UserController extends Controller
 {
@@ -56,7 +57,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        $hasroles = $user->getRoleNames();
+        $getroles = $user->getRoleNames();
 
         $userdata[0] = $user->name;
         $userdata[1] = $user->lastname;
@@ -64,13 +65,13 @@ class UserController extends Controller
         $userdata[3] = $user->phone;
         $userdata[4] = $user->email;
 
-        $makeroles = array();        
-        foreach($hasroles as $rol){
-            $makeroles[] = $rol;
+        $hasroles = array();        
+        foreach($getroles as $rol){
+            $hasroles[] = $rol;
         }
 
         $datos[0]=$userdata;
-        $datos[1]=$makeroles;
+        $datos[1]=$hasroles;
 
         $jsonstring = json_encode($datos);
         return $jsonstring;//okok
@@ -85,13 +86,13 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        $hasroles = $user->getRoleNames();
         $roles = Role::get();
-        $makeroles = array();        
-        foreach($hasroles as $rol){
-            $makeroles[] = $rol;
+        $getroles = $user->getRoleNames();
+        $hasroles = array();        
+        foreach($getroles as $rol){
+            $hasroles[] = $rol;
         }
-        return view('users.edit', compact('user','roles','hasroles','makeroles'));//okok
+        return view('users.edit', compact('user','roles','hasroles'));//okok
     }
 
     /**
@@ -124,8 +125,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::find($id)->delete();
-        return "eliminado";//okok
+        try {
+            User::find($id)->delete();
+        } catch (QueryException $e) {
+            return "false";
+        }
+        return "true";//okok
     }
 
     public function listusers(){
@@ -142,5 +147,16 @@ class UserController extends Controller
         // return datatables()->of($itemDtable)->toJson();
         $jsonstring = json_encode($itemDtable);
         return $jsonstring;//okok
+    }
+
+    public function test()
+    {
+        $id = 32;
+        try {
+            User::find($id)->delete();
+        } catch (QueryException $e) {
+            return "false";
+        }
+        return "true";
     }
 }

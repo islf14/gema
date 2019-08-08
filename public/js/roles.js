@@ -15,13 +15,13 @@ $(document).ready(function () {
           template += `
             <tr taskId=${task.id}>
                 <td>${task.name}</td>
-                <td>
+                <td width="10px">
                   <button type="button" class="btn-show btn btn-info" data-toggle="modal" data-target="#modalsee"><i class='fa fa-newspaper-o'></i> Ver</button>
                 </td>
-                <td>
+                <td width="10px">
                   <a href='rol/${task.id}/edit' class='btn btn-success'><i class='fa fa-edit'></i> Editar </a>
                 </td>
-                <td>
+                <td width="10px">
                   <button class="btn-delete btn btn-danger"><i class='fa fa-trash-o'></i> Delete</button>
                 </td>
             </tr>
@@ -86,6 +86,35 @@ $(document).ready(function () {
       });
     }
   });
+
+  $(document).on('click', '.btn-show', function () {
+    clean();
+    let element = $(this)[0].parentElement.parentElement;
+    let id = $(element).attr('taskId');
+    let url = 'rol/' + id;
+    var token = $('meta[name="csrf-token"]').attr('content');
+    $.ajax({
+      url: url,
+      type: 'GET',
+      headers: { 'X-CSRF-TOKEN': token },
+      success: function (response) {
+        let data = JSON.parse(response);
+        // console.log(data);
+        $('#nombre_rol').text(data[0][0]);
+        $('#guard_name').text(data[0][1]);
+        data[1].forEach(element => {
+          $("#haspermissions").append("<li>" + element + "</li>");
+        });
+      }
+    });
+
+  });
+
+  function clean() {
+    $('#nombre_rol').text("");
+    $('#guard_name').text("");
+    $("#haspermissions").empty();
+  }
 
   
 
