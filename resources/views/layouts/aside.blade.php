@@ -24,8 +24,10 @@
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
+
             <li class="header">MAIN NAVIGATION</li>
 
+            @hasanyrole('Super Admin|Administrador')
             <li class="treeview @yield('principal')">
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
@@ -38,7 +40,9 @@
                 {{-- <li><a href="#"><i class="fa fa-circle-o"></i>##</a></li> --}}
                 </ul>
             </li>
-
+            @endhasanyrole
+            
+            @hasanyrole('Super Admin|Administrador')
             <li class="treeview @yield('actividad')">
                 <a href="#">
                 <i class="fa fa-tasks"></i> <span>Mantenimiento</span>
@@ -51,7 +55,9 @@
                     <li class="@yield('actividad_create')"><a href="{{route('actividades.create')}}"><i class="fa fa-circle-o"></i>Registro actividad</a></li>
                 </ul>
             </li>
-
+            @endhasanyrole
+            
+            @hasanyrole('Super Admin|Administrador')
             <li class="treeview @yield('equipo')">
                 <a href="#">
                     <i class="fa fa-laptop"></i>
@@ -68,7 +74,9 @@
                 <li><a href="../UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li> --}}
                 </ul>
             </li>
+            @endhasanyrole
 
+            @hasanyrole('Super Admin|Administrador')
             <li class="treeview @yield('usuario')">
                 <a href="#">
                     <i class="fa fa-user"></i> <span>Usuarios</span>
@@ -77,7 +85,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    @can('users.index')                    
+                    @can('users.index')
                         <li class="@yield('usuario_index')"><a href="{{route('users.index')}}"><i class="fa fa-circle-o"></i>Listar usuarios</a></li>
                     @endcan
                     @can('roles.index')
@@ -88,7 +96,9 @@
                     {{-- <li><a href="../forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li> --}}
                 </ul>
             </li>
-
+            @endhasanyrole
+            
+            @hasanyrole('Super Admin|Administrador')
             <li class="treeview">
                 <a href="#">
                 <i class="fa fa-files-o"></i>
@@ -104,6 +114,7 @@
                 {{-- <li><a href="../layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li> --}}
                 </ul>
             </li>
+            @endhasanyrole
 
             <li><a href="#"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
 

@@ -48,7 +48,7 @@ Route::middleware(['auth'])->group(function () {
     ->middleware('permiso:users.destroy');
 
   Route::get('usuarios','UserController@listusers')->name('users.list')
-    ->middleware('permiso:users.list');
+    ->middleware('permiso:users.index');
 
   Route::get('usuarios/test','UserController@test')->name('users.test')
     ->middleware('permiso:users.test');
@@ -76,7 +76,7 @@ Route::middleware(['auth'])->group(function () {
     ->middleware('permiso:roles.destroy');
     
 	Route::get('roles', 'RoleController@listroles')->name('roles.list')
-		->middleware('permiso:roles.list');
+		->middleware('permiso:roles.index');
 
 
     

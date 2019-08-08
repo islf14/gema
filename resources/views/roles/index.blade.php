@@ -113,7 +113,9 @@
 
     <section class="content">
       <div>
+        @can('roles.create')
         <button type="button" id="btnModalNew" class="btn btn-primary" data-toggle="modal" data-target="#modalnew">Nuevo</button>
+        @endcan
       </div>
       <div class="box-header with-border">
       </div>

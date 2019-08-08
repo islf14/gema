@@ -109,10 +109,15 @@ class UserController extends Controller
         $datos["lastname"] = $request->lastname;
         $datos["dni"] = $request->dni;
         $datos["phone"] = $request->phone;
+        $datos["email"] = $request->email;
         if($request->password != null){
             $datos['password'] = Hash::make($request->password);
         }
-        $user->update($datos);//actualiza datos
+        try {
+            $user->update($datos);//actualiza datos
+        } catch (QueryException $e) {
+            return redirect()->route('users.index')->with('info', 'Error: correo ya existe, intente de nuevo');
+        }
         $user->syncRoles($request->roles);//asigna nuevos roles
         return redirect()->route('users.index');//okok
     }

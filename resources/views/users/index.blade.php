@@ -106,6 +106,19 @@
             <div class="box-header">
               <h3 class="box-title">Usuarios </h3>
             </div>
+
+            @if (session('info'))
+            <div class="">
+                <div class="">
+                    <div class="col-md-12">
+                        <div class="alert alert-danger">
+                            {{ session('info') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
+
             <!-- /.box-header -->
             <div class="box-body">
               <table id="" class="table table-bordered table-striped">
