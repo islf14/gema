@@ -37,7 +37,7 @@ $(document).ready(function () {
   });
 
   function cleannewuser(){
-    $('#formnewuser').trigger('reset');
+    $('#formnewrol').trigger('reset');
   }
 
   $('#SaveUser').click(function(e){

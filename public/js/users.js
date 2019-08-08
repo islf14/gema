@@ -91,7 +91,7 @@ $(document).ready(function () {
     $('#dni').text("");
     $('#telefono').text("");
     $('#email').text("");
-    $("#roles").empty();
+    $("#hasroles").empty();
   }
 
 });

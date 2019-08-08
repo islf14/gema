@@ -14,6 +14,7 @@
 @section('roles_index')
     active
 @endsection
+
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -37,7 +38,7 @@
               <span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">Nuevo rol</h4>
           </div>
-          <form id="formnewuser">
+          <form id="formnewrol">
             <div class="modal-body">
               <div class="box box-primary">
                 <div class="box-header with-border">
@@ -68,13 +69,13 @@
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Detalle de usuario</h4>
+            <h4 class="modal-title">Detalle de rol</h4>
           </div>
           <div class="modal-body">
 
               <div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Datos personales</h3>
+                  <h3 class="box-title">Datos de rol</h3>
                 </div>
                 <div class="box-body">
                   <table class="table">

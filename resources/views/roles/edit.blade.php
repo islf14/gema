@@ -42,8 +42,8 @@
                       <input type="text" class="form-control" id="name" name="name" placeholder="Nombres" value="{{ $role->name}}">
                     </div>
                     <div class="form-group">
-                      <label for="lastname">Tipo</label>
-                      <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Apellidos" readonly value="{{ $role->guard_name}}">
+                      <label for="guard_name">Tipo</label>
+                      <input type="text" class="form-control" id="guard_name" name="guard_name" placeholder="guard_name" readonly value="{{ $role->guard_name}}">
                     </div>
 
                   </div>
