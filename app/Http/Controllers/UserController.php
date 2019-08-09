@@ -129,13 +129,18 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        try {
-            User::find($id)->delete();
-        } catch (QueryException $e) {
+    {   
+        $user = User::find($id);
+        if($id!=1 && $user->name !="SuperAdmin"){
+            try {
+                $user->delete();
+            } catch (QueryException $e) {
+                return "false";
+            }
+            return "true";//okok
+        }else{
             return "false";
         }
-        return "true";//okok
     }
 
     public function listusers(){

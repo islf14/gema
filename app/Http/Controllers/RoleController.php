@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Exceptions\RoleAlreadyExists;
 
 class RoleController extends Controller
 {
@@ -36,8 +37,12 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        Role::create(['name' => $request->name]);
-        return "guardado";
+        try {
+            Role::create(['name' => $request->name]);
+        } catch (RoleAlreadyExists $e) {
+            return "false";
+        }
+        return "true";
     }
 
     /**
@@ -108,8 +113,14 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        Role::find($id)->delete();
-        return "eliminado";
+        $role = Role::find($id);
+        if($id!=1 && $role->name !="Super Admin"){
+            $role->delete();
+            return "true";
+        }else{
+            return "false";
+        }
+        
     }
     
     public function listroles(){
@@ -122,5 +133,23 @@ class RoleController extends Controller
         // dd($itemDtable);
         $jsonstring = json_encode($itemDtable);
         return $jsonstring;//okok
+    }
+
+    public function test()
+    {
+        try {
+            Role::create(['name' => 'Super Admin']);
+        } catch (RoleAlreadyExists $e) {
+            return "false";
+        }
+        return "true";
+        // $role = Role::create(['name' => 'Super Admin']);
+        // dd($role);
+        // try {
+        //     User::find($id)->delete();
+        // } catch (QueryException $e) {
+        //     return "false";
+        // }
+        // return "true";
     }
 }

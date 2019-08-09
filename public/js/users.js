@@ -52,7 +52,7 @@ $(document).ready(function () {
             fetchUsers();
           }
           else{
-            alert("No se pudo eliminar");
+            alert("No se puede eliminar este tipo de usuario");
           }
         }
       });

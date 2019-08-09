@@ -55,8 +55,9 @@ $(document).ready(function () {
         data: formData,
         success: function (result) {
           console.log(result);
-          // if("guardado" == result){
-          // }
+          if("false" == result){
+            alert("Ya existe ese rol");
+          }
         }
       }).done(function(data){
         $("#modalnew").modal('hide');
@@ -79,8 +80,10 @@ $(document).ready(function () {
         type: 'DELETE',  // user.destroy
         success: function (result) {
           console.log(result);
-          if("eliminado" == result){
+          if("true" == result){
             fetchRoles();
+          }else{
+            alert("No se puede eliminar este tipo de rol");
           }
         }
       });

@@ -23,6 +23,10 @@ Route::middleware(['auth'])->group(function () {
     return view('bienvenido');
   });
 
+  Route::get('/documentacion', function () {
+    return view('documentation');
+  })->name('documentation');
+
   Route::get('/home', 'HomeController@index')->name('home');
   Route::get('/', 'PrincipalController@index')->name('principal');
 
@@ -78,6 +82,8 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('roles', 'RoleController@listroles')->name('roles.list')
 		->middleware('permiso:roles.index');
 
+  Route::get('roles/test','RoleController@test')->name('roles.test')
+    ->middleware('permiso:roles.test');
 
     
 

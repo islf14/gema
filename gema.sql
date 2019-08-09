@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 04-08-2019 a las 22:43:26
+-- Tiempo de generación: 09-08-2019 a las 03:26:15
 -- Versión del servidor: 5.7.18-log
 -- Versión de PHP: 7.3.4
 
@@ -72,7 +72,15 @@ CREATE TABLE `model_has_roles` (
 --
 
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
-(1, 'App\\User', 1);
+(1, 'App\\User', 1),
+(2, 'App\\User', 2),
+(2, 'App\\User', 3),
+(3, 'App\\User', 3),
+(3, 'App\\User', 4),
+(4, 'App\\User', 4),
+(8, 'App\\User', 17),
+(12, 'App\\User', 17),
+(15, 'App\\User', 17);
 
 -- --------------------------------------------------------
 
@@ -147,7 +155,16 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
 (1, 'Super Admin', 'web', '2019-08-02 06:40:48', '2019-08-02 06:40:48'),
 (2, 'Administrador', 'web', '2019-08-02 07:04:12', '2019-08-02 07:04:12'),
-(3, 'usuario', 'web', '2019-08-05 00:32:23', '2019-08-05 00:32:23');
+(3, 'Supervisor', 'web', '2019-08-05 00:32:23', '2019-08-09 06:00:02'),
+(4, 'Técnico', 'web', '2019-08-08 05:35:31', '2019-08-09 06:00:40'),
+(8, 'Observador', 'web', '2019-08-09 06:02:30', '2019-08-09 06:02:30'),
+(9, 'Tablero', 'web', '2019-08-09 06:47:08', '2019-08-09 06:47:08'),
+(10, 'Mantenimiento', 'web', '2019-08-09 06:47:16', '2019-08-09 06:47:16'),
+(11, 'Equipos', 'web', '2019-08-09 06:47:24', '2019-08-09 06:47:24'),
+(12, 'Usuarios', 'web', '2019-08-09 06:47:31', '2019-08-09 06:47:31'),
+(13, 'Reportes', 'web', '2019-08-09 06:47:41', '2019-08-09 06:47:41'),
+(14, 'Documentación', 'web', '2019-08-09 06:47:50', '2019-08-09 06:47:50'),
+(15, 'Administrador de usuarios', 'web', '2019-08-09 06:51:28', '2019-08-09 06:51:28');
 
 -- --------------------------------------------------------
 
@@ -159,6 +176,19 @@ CREATE TABLE `role_has_permissions` (
   `permission_id` int(10) UNSIGNED NOT NULL,
   `role_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `role_has_permissions`
+--
+
+INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
+(1, 2),
+(2, 2),
+(4, 2),
+(5, 2),
+(6, 2),
+(1, 15),
+(2, 15);
 
 -- --------------------------------------------------------
 
@@ -345,8 +375,7 @@ CREATE TABLE `tb_registro` (
 --
 
 INSERT INTO `tb_registro` (`idRegistro`, `problema`, `solucion`, `fecha`, `tipoMant`, `recomendaciones`, `user_id`, `Equipo_idEquipo`) VALUES
-(1, 'se detecto que el ventilador no gira', 'se hizo limpiza', '2019-05-30 09:00:00', 'Correctivo', 'se recomienda hacer un seguimiento', 2, 1),
-(2, 'mantenimiento de fuente', 'mantenimiento físico', '2019-05-30 14:00:00', 'Preventivo', 'limpieza', 2, 1);
+(1, 'se detecto que el ventilador no gira', 'se hizo limpiza', '2019-05-30 09:00:00', 'Correctivo', 'se recomienda hacer un seguimiento', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -425,11 +454,16 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `lastname`, `email`, `phone`, `dni`, `nivel`, `cargoid`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'SuperAdmin', 'Ad', 'superadmin@mdcgal.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$cI5JrXNVKhVMASMgRm0fR.TstsJgfTowjDdEZAkaNi0lhTennW91C', NULL, '2019-07-20 00:14:17', '2019-07-20 00:14:17'),
-(2, 'user', 'us', 'user@mdcgal.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$d/fQcCU9CPDl0jm6BnAN7e5BmgLrxF/tRi6.sBBICEPMILlRtyK2C', NULL, '2019-07-25 21:54:44', '2019-07-25 21:54:44'),
-(3, 'admin', NULL, 'admin@mdcgal.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$386LIAJ9cvwSkYLyIIureeOOi/ojNql5/B.ArqbIeoWnfAysI69i.', NULL, '2019-08-05 00:34:17', '2019-08-05 00:34:17'),
-(4, 'usuario2', NULL, 'user2@mdcgal.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$iBzN6to8SEFnt6PxIT3Pme5HYJ1s8TajofmuJ2miLnNggP/MmDhay', NULL, '2019-08-05 03:10:39', '2019-08-05 03:10:39'),
-(5, 'usuario3', NULL, 'user3@mdcgal.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$HIvMFIxlJ.rHCbbR40Z9IeH5ChH02V85V7wy3Lj/7WPxi6nDSHFQq', NULL, '2019-08-05 03:28:21', '2019-08-05 03:28:21'),
-(6, 'usuario4', 'usuario', 'user4@mdcgal.com', NULL, '23435423', NULL, NULL, NULL, '$2y$10$5gENwDKzWPpGp1pf2fenb.oa8H8ZWlJPbXd031A9imbqEuy5XhQ2e', NULL, '2019-08-05 03:36:27', '2019-08-05 03:36:27');
+(2, 'Administrador', NULL, 'admin@mdcgal.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$4wmFUAZb5oIoZUSGUkdhT.U5nIyTutWGJh.zQ4C0JlJWABCSIojwu', NULL, '2019-07-25 21:54:44', '2019-08-08 09:53:40'),
+(3, 'Supervisor', NULL, 'supervisor@mdcgal.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$5AVl76U60gSGADIavAvjfOfhrv.M3mqN87VGr2k/S6lFphkncGeVu', NULL, '2019-08-05 00:34:17', '2019-08-08 09:49:53'),
+(4, 'usuario2', 'usuario', 'user2@mdcgal.com', '95555555', '66778899', NULL, NULL, NULL, '$2y$10$Cpvm8XcAt4I/PBOAq.dtbORw4h3ZzqxNP02R078dYcQC6jr.tuD2m', NULL, '2019-08-05 03:10:39', '2019-08-07 05:53:50'),
+(17, 'Patricio', 'Melendez', 'user3@mdcgal.com', '9878787', '89898898', NULL, NULL, '2019-08-08 07:38:24', '$2y$10$pywgU4/tmaxGkN7AWUJke.nfWCEC0ZH1RDvselnZ6aK30Q7nanIaG', 'GN1cSm1Z8YVAgdOurzU1pvEhnlUyHaGFdkBNMMqBMYXzHF2uzMZoDMCLOq1H', '2019-08-08 07:38:24', '2019-08-09 06:14:40'),
+(19, 'Vesta Abshire', NULL, 'roman.kozey@example.org', NULL, NULL, NULL, NULL, '2019-08-08 07:38:24', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '58WEwc2sIJ', '2019-08-08 07:38:25', '2019-08-08 07:38:25'),
+(20, 'Prof. Zetta Lakin', NULL, 'carey86@example.org', NULL, NULL, NULL, NULL, '2019-08-08 07:38:24', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'BSHikyhxTb', '2019-08-08 07:38:25', '2019-08-08 07:38:25'),
+(21, 'Hannah Schowalter', NULL, 'ocremin@example.org', NULL, NULL, NULL, NULL, '2019-08-08 07:38:24', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '1m6S0eAZG6', '2019-08-08 07:38:25', '2019-08-08 07:38:25'),
+(22, 'Prof. Mason Brakus IV', NULL, 'garfield32@example.com', NULL, NULL, NULL, NULL, '2019-08-08 07:38:24', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'upEMDNmue4', '2019-08-08 07:38:25', '2019-08-08 07:38:25'),
+(23, 'SuperAdmin', NULL, 'ubrakus@example.net', NULL, NULL, NULL, NULL, '2019-08-08 07:38:24', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'OBAGo9mont', '2019-08-08 07:38:25', '2019-08-09 07:51:50'),
+(37, 'Juan Pedro', 'Llanos Sosa', 'user4@mdcgal.com', '324324234', '23443322', NULL, NULL, NULL, '$2y$10$R0ySK28E4eM5Mw/xARvE0eqE4aRW9164qi9cTl1v/GYKuxif2zwUO', NULL, '2019-08-09 08:21:21', '2019-08-09 08:21:21');
 
 -- --------------------------------------------------------
 
@@ -602,7 +636,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_cargo`
@@ -644,7 +678,7 @@ ALTER TABLE `tb_procesador`
 -- AUTO_INCREMENT de la tabla `tb_registro`
 --
 ALTER TABLE `tb_registro`
-  MODIFY `idRegistro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idRegistro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_so`
@@ -662,7 +696,7 @@ ALTER TABLE `tb_tipoequipo`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
