@@ -59,10 +59,10 @@
                 </a>
                 <ul class="treeview-menu">
                     @can('device.index')
-                        <li class="@yield('equipo_index')"><a href="{{url('equipo')}}"><i class="fa fa-circle-o"></i> Listar equipos</a></li>
+                        <li class="@yield('equipo_index')"><a href="{{ route('device.index') }}"><i class="fa fa-circle-o"></i> Listar equipos</a></li>
                     @endcan
                     @can('device.index')
-                        <li class="@yield('equipo_create')"><a href="{{route('equipo.create')}}"><i class="fa fa-circle-o"></i> Registro equipo</a></li>
+                        <li class="@yield('equipo_create')"><a href="{{ route('device.create') }}"><i class="fa fa-circle-o"></i> Registro equipo</a></li>
                     @endcan
                 </ul>
             </li>

@@ -68,13 +68,10 @@
               <div class="form-group">
                 <label>Tipo de equipo</label>
                 <select class="form-control select2" style="width: 100%;">
-                  <option selected="selected">Alabama</option>
-                  <option>Alaska</option>
-                  <option>California</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
+                  <option value="" selected="selected">Seleccione</option>
+                  @foreach ($tipoequipo as $item)
+                      <option value="{{ $item->idTipoEquipo}}">{{ $item->nomTipoE}}</option>
+                  @endforeach
                 </select>
               </div>
               
@@ -88,7 +85,7 @@
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="text" class="form-control pull-right" id="datepicker">
+                  <input type="text" class="form-control pull-right" id="datepicker" value="{{ $fecha }}">
                 </div>
               </div>
             </div>
@@ -112,31 +109,28 @@
                   <label>Tipo de código</label>
                   <select class="form-control">
                     <option value="">Seleccione</option>
-                    <option value="P">Patrimonial</option>
-                    <option value="I">Interno</option>
+                    <option value="Patrimonial">Patrimonial</option>
+                    <option value="Interno">Interno</option>
                   </select>
                 </div>
                 
               <div class="form-group">
                 <label>Código</label>
-                <input type="text" class="form-control" placeholder="11010010101">
+                <input type="text" class="form-control" placeholder="Ejm: 11010010101">
               </div>
               <div class="form-group">
                 <label>ubicación</label>
-                <input type="text" class="form-control" placeholder="Enter ...">
+                <input type="text" class="form-control" placeholder="Ejm: SGTIC">
               </div>
             
               <!-- /.form-group -->
               <div class="form-group">
                 <label>Dependencia</label>
                 <select class="form-control select2" style="width: 100%;">
-                  <option selected="selected">Alabama</option>
-                  <option>Alaska</option>
-                  <option disabled="disabled">California (disabled)</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
+                  <option selected="selected">Seleccione</option>
+                  @foreach ($dependencia as $item)
+                      <option value="{{ $item->idDependencia }}">{{ $item->nomDependencia }}</option>
+                  @endforeach
                 </select>
               </div>
               <!-- /.form group -->
@@ -154,15 +148,15 @@
 
               <div class="form-group">
                 <label>Modelo</label>
-                <input type="text" class="form-control" placeholder="Enter ...">
+                <input type="text" class="form-control" placeholder="Ejm: MRF-345">
               </div>
               <div class="form-group">
                 <label>Serie</label>
-                <input type="text" class="form-control" placeholder="Enter ...">
+                <input type="text" class="form-control" placeholder="Ejm: 2FTEE3G">
               </div>
               <div class="form-group">
                 <label>RAM</label>
-                <input type="text" class="form-control" placeholder="Enter ...">
+                <input type="text" class="form-control" placeholder="Ejm: 2 GB">
               </div>
 
               <!-- IP mask -->
@@ -184,7 +178,7 @@
                   <div class="input-group-addon">
                     <i class="fa fa-laptop"></i>
                   </div>
-                  <input type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask>
+                  <input type="text" class="form-control" id="mac" >
                 </div>
                 <!-- /.input group -->
               </div>
@@ -302,94 +296,99 @@
 
 @section('script')
 
+  <!-- Select2 -->
+  <script src="{{asset('bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+  <!-- InputMask -->
+  <script src="{{asset('plugins/input-mask/jquery.inputmask.js')}}"></script>
+  <script src="{{asset('plugins/input-mask/jquery.inputmask.date.extensions.js')}}"></script>
+  <script src="{{asset('plugins/input-mask/jquery.inputmask.extensions.js')}}"></script>
+  <!-- date-range-picker -->
+  <script src="{{asset('bower_components/moment/min/moment.min.js')}}"></script>
+  <script src="{{asset('bower_components/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+  <!-- bootstrap datepicker -->
+  <script src="{{asset('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
+  <!-- bootstrap color picker -->
+  <script src="{{asset('bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js')}}"></script>
+  <!-- bootstrap time picker -->
+  <script src="{{asset('plugins/timepicker/bootstrap-timepicker.min.js')}}"></script>
 
-<!-- Select2 -->
-<script src="{{asset('bower_components/select2/dist/js/select2.full.min.js')}}"></script>
-<!-- InputMask -->
-<script src="{{asset('plugins/input-mask/jquery.inputmask.js')}}"></script>
-<script src="{{asset('plugins/input-mask/jquery.inputmask.date.extensions.js')}}"></script>
-<script src="{{asset('plugins/input-mask/jquery.inputmask.extensions.js')}}"></script>
-<!-- date-range-picker -->
-<script src="{{asset('bower_components/moment/min/moment.min.js')}}"></script>
-<script src="{{asset('bower_components/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
-<!-- bootstrap datepicker -->
-<script src="{{asset('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
-<!-- bootstrap color picker -->
-<script src="{{asset('bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js')}}"></script>
-<!-- bootstrap time picker -->
-<script src="{{asset('plugins/timepicker/bootstrap-timepicker.min.js')}}"></script>
+    <!-- DataTables -->
+    {{-- <script src="{{asset('js/equipo.js')}}"></script> --}}
+    {{-- <script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script> --}}
+    {{-- <script src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script> --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+  <script>
+    $(function () {
+      //Initialize Select2 Elements
+      $('.select2').select2()
 
-  <!-- DataTables -->
-  {{-- <script src="{{asset('js/equipo.js')}}"></script> --}}
-  {{-- <script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script> --}}
-  {{-- <script src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script> --}}
+      //Datemask dd/mm/yyyy
+      // $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+      //Datemask2 mm/dd/yyyy
+      // $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+      //Money Euro
+      $('[data-mask]').inputmask()
+      $('#mac').inputmask("mac")
 
-<script>
-  $(function () {
-    //Initialize Select2 Elements
-    $('.select2').select2()
+      //Date range picker
+      $('#reservation').daterangepicker()
+      //Date range picker with time picker
+      // $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, locale: { format: 'MM/DD/YYYY hh:mm A' }})
+      //Date range as a button
+      // $('#daterange-btn').daterangepicker(
+      //   {
+      //     ranges   : {
+      //       'Today'       : [moment(), moment()],
+      //       'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+      //       'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+      //       'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+      //       'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+      //       'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+      //     },
+      //     startDate: moment().subtract(29, 'days'),
+      //     endDate  : moment()
+      //   },
+      //   function (start, end) {
+      //     $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+      //   }
+      // )
 
-    //Datemask dd/mm/yyyy
-    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
-    //Datemask2 mm/dd/yyyy
-    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
-    //Money Euro
-    $('[data-mask]').inputmask()
+      //Date picker
+      // $('#datepicker').datepicker({
+      //   autoclose: true
+      // })
 
-    //Date range picker
-    $('#reservation').daterangepicker()
-    //Date range picker with time picker
-    $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, locale: { format: 'MM/DD/YYYY hh:mm A' }})
-    //Date range as a button
-    $('#daterange-btn').daterangepicker(
-      {
-        ranges   : {
-          'Today'       : [moment(), moment()],
-          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        },
-        startDate: moment().subtract(29, 'days'),
-        endDate  : moment()
-      },
-      function (start, end) {
-        $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-      }
-    )
+      $('#datepicker').datetimepicker({
+          format: 'YYYY-MM-DD HH:mm:ss'
+      });
 
-    //Date picker
-    $('#datepicker').datepicker({
-      autoclose: true
+
+      // //iCheck for checkbox and radio inputs
+      // $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+      //   checkboxClass: 'icheckbox_minimal-blue',
+      //   radioClass   : 'iradio_minimal-blue'
+      // })
+      // //Red color scheme for iCheck
+      // $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+      //   checkboxClass: 'icheckbox_minimal-red',
+      //   radioClass   : 'iradio_minimal-red'
+      // })
+      // //Flat red color scheme for iCheck
+      // $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+      //   checkboxClass: 'icheckbox_flat-green',
+      //   radioClass   : 'iradio_flat-green'
+      // })
+
+      //Colorpicker
+      $('.my-colorpicker1').colorpicker()
+      //color picker with addon
+      $('.my-colorpicker2').colorpicker()
+
+      //Timepicker
+      $('.timepicker').timepicker({
+        showInputs: false
+      })
     })
-
-    // //iCheck for checkbox and radio inputs
-    // $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-    //   checkboxClass: 'icheckbox_minimal-blue',
-    //   radioClass   : 'iradio_minimal-blue'
-    // })
-    // //Red color scheme for iCheck
-    // $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-    //   checkboxClass: 'icheckbox_minimal-red',
-    //   radioClass   : 'iradio_minimal-red'
-    // })
-    // //Flat red color scheme for iCheck
-    // $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-    //   checkboxClass: 'icheckbox_flat-green',
-    //   radioClass   : 'iradio_flat-green'
-    // })
-
-    //Colorpicker
-    $('.my-colorpicker1').colorpicker()
-    //color picker with addon
-    $('.my-colorpicker2').colorpicker()
-
-    //Timepicker
-    $('.timepicker').timepicker({
-      showInputs: false
-    })
-  })
-</script>
+  </script>
 
 @endsection

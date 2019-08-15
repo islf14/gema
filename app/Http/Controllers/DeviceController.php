@@ -8,7 +8,7 @@ use Carbon\Carbon;
 
 use DB;
 
-class EquipoController extends Controller
+class DeviceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,8 +28,16 @@ class EquipoController extends Controller
      */
     public function create()
     {
-        //
-        return view('equipo.create');
+        $tipoequipo = DB::table('tb_tipoequipo')->get();
+        $estado = DB::table('tb_estado')->get();
+        $marca = DB::table('tb_marca')->get();
+        $dependencia = DB::table('tb_dependencia')->get();
+        $procesador = DB::table('tb_procesador')->get();
+        $so = DB::table('tb_so')->get();
+
+        $fecha = Carbon::now();
+        // dd($fecha);
+        return view('equipo.create', compact('tipoequipo','estado','marca','dependencia','procesador','so','fecha'));
     }
 
     /**

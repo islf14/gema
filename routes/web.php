@@ -30,8 +30,16 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/home', 'HomeController@index')->name('home');
   Route::get('/', 'PrincipalController@index')->name('principal');
 
-  Route::resource('equipo','EquipoController');
-  Route::get('equipos','EquipoController@listarequipos');
+  Route::get('equipo','DeviceController@index')->name('device.index')->middleware('permiso:device.index');
+  Route::get('equipo/create','DeviceController@create')->name('device.create')->middleware('permiso:device.create');
+  Route::post('equipo/store','DeviceController@store')->name('device.store')->middleware('permiso:device.create');
+  Route::get('equipo/{id}','DeviceController@show')->name('device.show')->middleware('permiso:device.show');
+  Route::get('equipo/{id}/edit','DeviceController@edit')->name('device.edit')->middleware('permiso:device.edit');
+  Route::post('equipo/update/{id}','DeviceController@update')->name('device.update')->middleware('permiso:device.edit');
+  Route::get('equipo/delete/{id}','DeviceController@destroy')->name('device.destroy')->middleware('permiso:device.destroy');
+
+  Route::get('equipos','DeviceController@listarequipos');
+  
   Route::resource('actividades','ActividadController');
 
 
@@ -53,8 +61,8 @@ Route::middleware(['auth'])->group(function () {
   Route::post('rol/store', 'RoleController@store')->name('roles.store')->middleware('permiso:roles.create');    
 	Route::get('rol/{role}', 'RoleController@show')->name('roles.show')->middleware('permiso:roles.show');
   Route::get('rol/{role}/edit', 'RoleController@edit')->name('roles.edit')->middleware('permiso:roles.edit');
-	Route::post('rol/{role}', 'RoleController@update')->name('roles.update')->middleware('permiso:roles.edit');
-  Route::delete('rol/{role}', 'RoleController@destroy')->name('roles.destroy')->middleware('permiso:roles.destroy');
+	Route::post('rol/update/{role}', 'RoleController@update')->name('roles.update')->middleware('permiso:roles.edit');
+  Route::delete('rol/delete/{role}', 'RoleController@destroy')->name('roles.destroy')->middleware('permiso:roles.destroy');
   
     
 	Route::get('roles', 'RoleController@listroles')->name('roles.list')->middleware('permiso:roles.index');
