@@ -30,6 +30,16 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/home', 'HomeController@index')->name('home');
   Route::get('/', 'PrincipalController@index')->name('principal');
 
+  //Activity
+  Route::get('actividad','ActivityController@index')->name('activity.index')->middleware('permiso:activity.index');
+  Route::get('actividad/create','ActivityController@create')->name('activity.create')->middleware('permiso:activity.create');
+  Route::get('actividad/store','ActivityController@store')->name('activity.store')->middleware('permiso:activity.index');
+  Route::get('actividad/{id}','ActivityController@show')->name('activity.show')->middleware('permiso:activity.show');
+  Route::get('actividad/{id}/edit','ActivityController@edit')->name('activity.edit')->middleware('permiso:activity.edit');
+  Route::get('actividad/update/{id}','ActivityController@update')->name('activity.update')->middleware('permiso:activity.edit');
+  Route::get('actividad/delete/{id}','ActivityController@destroy')->name('activity.destroy')->middleware('permiso:activity.destroy');
+
+  //Device
   Route::get('equipo','DeviceController@index')->name('device.index')->middleware('permiso:device.index');
   Route::get('equipo/create','DeviceController@create')->name('device.create')->middleware('permiso:device.create');
   Route::post('equipo/store','DeviceController@store')->name('device.store')->middleware('permiso:device.create');
@@ -39,9 +49,6 @@ Route::middleware(['auth'])->group(function () {
   Route::get('equipo/delete/{id}','DeviceController@destroy')->name('device.destroy')->middleware('permiso:device.destroy');
 
   Route::get('equipos','DeviceController@listarequipos');
-  
-  Route::resource('actividades','ActividadController');
-
 
   //Users
   Route::get('usuario', 'UserController@index')->name('users.index')->middleware('permiso:users.index');
@@ -50,9 +57,7 @@ Route::middleware(['auth'])->group(function () {
   Route::post('usuario/update/{id}', 'UserController@update')->name('users.update')->middleware('permiso:users.edit');
   Route::delete('usuario/delete/{id}','UserController@destroy')->name('users.destroy')->middleware('permiso:users.destroy');
 
-
   Route::get('usuarios','UserController@listusers')->name('users.list')->middleware('permiso:users.index');
-
   Route::get('usuarios/test','UserController@test')->name('users.test')->middleware('permiso:users.test');
 
   //Roles
@@ -68,8 +73,6 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('roles', 'RoleController@listroles')->name('roles.list')->middleware('permiso:roles.index');
 
   Route::get('roles/test','RoleController@test')->name('roles.test')->middleware('permiso:roles.test');
-
-    
 
 });
 

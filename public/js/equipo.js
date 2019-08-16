@@ -18,7 +18,7 @@ $(document).ready(function() {
             { data: 'nomDependencia' },
             { data: 'nomEstado' },
             { data: 'nomMarca' },
-            { data: 'nomMarca' }
+            { data: 'modelo' }
         ]
     });
 

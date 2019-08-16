@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 09-08-2019 a las 03:26:15
+-- Tiempo de generación: 16-08-2019 a las 03:35:17
 -- Versión del servidor: 5.7.18-log
 -- Versión de PHP: 7.3.4
 
@@ -250,7 +250,7 @@ CREATE TABLE `tb_equipo` (
   `ram` varchar(15) CHARACTER SET utf8 DEFAULT NULL,
   `dominio` varchar(15) CHARACTER SET utf8 DEFAULT NULL,
   `ip` varchar(25) CHARACTER SET utf8 DEFAULT NULL,
-  `macRed` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
+  `mac` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
   `nom_equipo` varchar(25) CHARACTER SET utf8 DEFAULT NULL,
   `usuario` varchar(30) CHARACTER SET utf8 DEFAULT NULL,
   `licencia_w` varchar(35) CHARACTER SET utf8 DEFAULT NULL,
@@ -258,21 +258,29 @@ CREATE TABLE `tb_equipo` (
   `fecha` datetime DEFAULT NULL,
   `grupo` int(11) DEFAULT NULL,
   `observaciones` varchar(800) CHARACTER SET utf8 DEFAULT NULL,
-  `TipoEquipo_idTipoEquipo` int(11) NOT NULL,
-  `Dependencia_idDependencia` int(11) NOT NULL,
-  `Estado_idEstado` int(11) NOT NULL,
-  `Marca_idMarca` int(11) NOT NULL,
-  `SO_idSO` int(11) DEFAULT NULL,
-  `Procesador_idProcesador` int(11) DEFAULT NULL
+  `idTipoEquipo` int(11) NOT NULL,
+  `idDependencia` int(11) NOT NULL,
+  `idEstado` int(11) NOT NULL,
+  `idMarca` int(11) NOT NULL,
+  `idSO` int(11) DEFAULT NULL,
+  `idProcesador` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `tb_equipo`
 --
 
-INSERT INTO `tb_equipo` (`idEquipo`, `tipo_codigo`, `codigo_pat`, `ubicacion`, `modelo`, `serie`, `ram`, `dominio`, `ip`, `macRed`, `nom_equipo`, `usuario`, `licencia_w`, `acceso_internet`, `fecha`, `grupo`, `observaciones`, `TipoEquipo_idTipoEquipo`, `Dependencia_idDependencia`, `Estado_idEstado`, `Marca_idMarca`, `SO_idSO`, `Procesador_idProcesador`) VALUES
-(1, 'Patrimonial', '12345678910', 'SGTIC', NULL, NULL, '2GB', 'mdcgal', '192.168.2.100', NULL, NULL, NULL, NULL, 'si', '2019-05-30 10:25:00', 1, NULL, 1, 1, 1, 1, 2, 16),
-(2, 'Patrimonial', '12342342425', 'SGTIC', NULL, NULL, NULL, NULL, '192.168.2.1', NULL, NULL, NULL, NULL, 'si', '2019-05-30 08:00:00', 2, NULL, 1, 1, 1, 2, 5, 15);
+INSERT INTO `tb_equipo` (`idEquipo`, `tipo_codigo`, `codigo_pat`, `ubicacion`, `modelo`, `serie`, `ram`, `dominio`, `ip`, `mac`, `nom_equipo`, `usuario`, `licencia_w`, `acceso_internet`, `fecha`, `grupo`, `observaciones`, `idTipoEquipo`, `idDependencia`, `idEstado`, `idMarca`, `idSO`, `idProcesador`, `created_at`, `updated_at`) VALUES
+(1, 'Patrimonial', '12345678910', 'SGTIC', NULL, NULL, '2GB', 'mdcgal', '192.168.2.100', NULL, NULL, NULL, NULL, 'si', '2019-05-30 10:25:00', 1, NULL, 1, 1, 1, 1, 2, 16, NULL, NULL),
+(2, 'Patrimonial', '12342342425', 'SGTIC', NULL, NULL, NULL, NULL, '192.168.2.1', NULL, NULL, NULL, NULL, 'si', '2019-05-30 08:00:00', 2, NULL, 1, 1, 1, 2, 5, 15, NULL, NULL),
+(3, 'patrimonial', '56765765765', 'SGTIC', NULL, NULL, '2GB', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-14 23:30:35', NULL, NULL, 1, 1, 2, 1, NULL, NULL, NULL, NULL),
+(4, 'patrimonial', '98388338', 'SGTIC', NULL, NULL, '2GB', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 23:30:35', NULL, NULL, 1, 1, 2, 1, NULL, NULL, NULL, NULL),
+(5, 'Patrimonial', '76576576', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 2, 2, 2, '2019-08-16 00:55:25', '2019-08-16 00:55:25'),
+(6, 'Interno', '76576576', 'sgtic', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'si', '2019-08-15 19:58:15', NULL, NULL, 2, 2, 2, 2, 1, 2, '2019-08-16 01:20:46', '2019-08-16 01:20:46'),
+(7, 'Patrimonial', '192334832947', 'SGTIC', 'jlk78', 'lkj798jl', '2 GB', NULL, '192.168.1.13', '3G:2H:5H:5H', NULL, 'Usuario', 'KJL234L23KJ5LK345LK', 'si', '2019-08-15 20:47:42', NULL, NULL, 1, 1, 1, 3, 2, 18, '2019-08-16 01:49:33', '2019-08-16 01:49:33'),
+(8, 'Patrimonial', '7882334832947', 'Alcaldía', 'jlk78', 'lkj798jl', '2 GB', 'mdcgal', '192.168.2.13', '3G:2H:5H:5H', 'MDCGAL003', 'Juan', 'KJL234L23KJ5LK345LK', 'si', '2019-08-15 21:36:52', NULL, 'no hay observaciones', 1, 2, 1, 4, 6, 17, '2019-08-16 02:38:51', '2019-08-16 02:38:51');
 
 -- --------------------------------------------------------
 
@@ -367,15 +375,19 @@ CREATE TABLE `tb_registro` (
   `tipoMant` varchar(15) CHARACTER SET utf8 DEFAULT NULL,
   `recomendaciones` varchar(300) CHARACTER SET utf8 DEFAULT NULL,
   `user_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `Equipo_idEquipo` int(11) DEFAULT NULL
+  `Equipo_idEquipo` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `tb_registro`
 --
 
-INSERT INTO `tb_registro` (`idRegistro`, `problema`, `solucion`, `fecha`, `tipoMant`, `recomendaciones`, `user_id`, `Equipo_idEquipo`) VALUES
-(1, 'se detecto que el ventilador no gira', 'se hizo limpiza', '2019-05-30 09:00:00', 'Correctivo', 'se recomienda hacer un seguimiento', 2, 1);
+INSERT INTO `tb_registro` (`idRegistro`, `problema`, `solucion`, `fecha`, `tipoMant`, `recomendaciones`, `user_id`, `Equipo_idEquipo`, `created_at`, `updated_at`) VALUES
+(1, 'se detecto que el ventilador no gira', 'se hizo limpiza', '2019-05-30 09:00:00', 'Correctivo', 'se recomienda hacer un seguimiento', 2, 1, NULL, NULL),
+(2, 'se detecto que el ventilador no gira', 'se hizo limpiza', '2019-05-30 09:00:00', 'Correctivo', 'se recomienda hacer un seguimiento', 2, 1, NULL, NULL),
+(3, 'se detecto que el ventilador no gira', 'se hizo limpiza', '2019-05-30 09:00:00', 'Correctivo', 'se recomienda hacer un seguimiento', 2, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -557,12 +569,12 @@ ALTER TABLE `tb_dependencia`
 --
 ALTER TABLE `tb_equipo`
   ADD PRIMARY KEY (`idEquipo`),
-  ADD KEY `fk_Equipo_TipoEquipo_idx` (`TipoEquipo_idTipoEquipo`),
-  ADD KEY `fk_Equipo_Dependencia1_idx` (`Dependencia_idDependencia`),
-  ADD KEY `fk_Equipo_Estado1_idx` (`Estado_idEstado`),
-  ADD KEY `fk_Equipo_Marca1_idx` (`Marca_idMarca`),
-  ADD KEY `fk_Equipo_SO1_idx` (`SO_idSO`),
-  ADD KEY `fk_Equipo_Procesador1_idx` (`Procesador_idProcesador`);
+  ADD KEY `fk_Equipo_TipoEquipo_idx` (`idTipoEquipo`),
+  ADD KEY `fk_Equipo_Dependencia1_idx` (`idDependencia`),
+  ADD KEY `fk_Equipo_Estado1_idx` (`idEstado`),
+  ADD KEY `fk_Equipo_Marca1_idx` (`idMarca`),
+  ADD KEY `fk_Equipo_SO1_idx` (`idSO`),
+  ADD KEY `fk_Equipo_Procesador1_idx` (`idProcesador`);
 
 --
 -- Indices de la tabla `tb_estado`
@@ -636,7 +648,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_cargo`
@@ -654,7 +666,7 @@ ALTER TABLE `tb_dependencia`
 -- AUTO_INCREMENT de la tabla `tb_equipo`
 --
 ALTER TABLE `tb_equipo`
-  MODIFY `idEquipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idEquipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_estado`
@@ -731,12 +743,12 @@ ALTER TABLE `role_has_permissions`
 -- Filtros para la tabla `tb_equipo`
 --
 ALTER TABLE `tb_equipo`
-  ADD CONSTRAINT `fk_Equipo_Dependencia1` FOREIGN KEY (`Dependencia_idDependencia`) REFERENCES `tb_dependencia` (`idDependencia`),
-  ADD CONSTRAINT `fk_Equipo_Estado1` FOREIGN KEY (`Estado_idEstado`) REFERENCES `tb_estado` (`idEstado`),
-  ADD CONSTRAINT `fk_Equipo_Marca1` FOREIGN KEY (`Marca_idMarca`) REFERENCES `tb_marca` (`idMarca`),
-  ADD CONSTRAINT `fk_Equipo_Procesador1` FOREIGN KEY (`Procesador_idProcesador`) REFERENCES `tb_procesador` (`idProcesador`),
-  ADD CONSTRAINT `fk_Equipo_SO1` FOREIGN KEY (`SO_idSO`) REFERENCES `tb_so` (`idSO`),
-  ADD CONSTRAINT `fk_Equipo_TipoEquipo` FOREIGN KEY (`TipoEquipo_idTipoEquipo`) REFERENCES `tb_tipoequipo` (`idTipoEquipo`);
+  ADD CONSTRAINT `fk_Equipo_Dependencia1` FOREIGN KEY (`idDependencia`) REFERENCES `tb_dependencia` (`idDependencia`),
+  ADD CONSTRAINT `fk_Equipo_Estado1` FOREIGN KEY (`idEstado`) REFERENCES `tb_estado` (`idEstado`),
+  ADD CONSTRAINT `fk_Equipo_Marca1` FOREIGN KEY (`idMarca`) REFERENCES `tb_marca` (`idMarca`),
+  ADD CONSTRAINT `fk_Equipo_Procesador1` FOREIGN KEY (`idProcesador`) REFERENCES `tb_procesador` (`idProcesador`),
+  ADD CONSTRAINT `fk_Equipo_SO1` FOREIGN KEY (`idSO`) REFERENCES `tb_so` (`idSO`),
+  ADD CONSTRAINT `fk_Equipo_TipoEquipo` FOREIGN KEY (`idTipoEquipo`) REFERENCES `tb_tipoequipo` (`idTipoEquipo`);
 
 --
 -- Filtros para la tabla `tb_registro`

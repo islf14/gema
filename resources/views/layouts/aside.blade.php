@@ -39,10 +39,10 @@
                 </a>
                 <ul class="treeview-menu">
                     @can('maintenance.index')
-                        <li class="@yield('actividad_index')"><a href="{{url('actividades')}}"><i class="fa fa-circle-o"></i>Listar actividades</a></li>
+                        <li class="@yield('actividad_index')"><a href="{{ route('activity.index') }}"><i class="fa fa-circle-o"></i>Listar actividades</a></li>
                     @endcan
                     @can('maintenance.index')
-                        <li class="@yield('actividad_create')"><a href="{{route('actividades.create')}}"><i class="fa fa-circle-o"></i>Registro actividad</a></li>
+                        <li class="@yield('actividad_create')"><a href="{{ route('activity.create') }}"><i class="fa fa-circle-o"></i>Registrar actividad</a></li>
                     @endcan
                 </ul>
             </li>
@@ -62,7 +62,7 @@
                         <li class="@yield('equipo_index')"><a href="{{ route('device.index') }}"><i class="fa fa-circle-o"></i> Listar equipos</a></li>
                     @endcan
                     @can('device.index')
-                        <li class="@yield('equipo_create')"><a href="{{ route('device.create') }}"><i class="fa fa-circle-o"></i> Registro equipo</a></li>
+                        <li class="@yield('equipo_create')"><a href="{{ route('device.create') }}"><i class="fa fa-circle-o"></i> Registrar equipo</a></li>
                     @endcan
                 </ul>
             </li>
@@ -98,10 +98,10 @@
                 </a>
                 <ul class="treeview-menu">
                     @can('report.index')
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i> Reportes </a></li>
                     @endcan
                     @can('report.index')
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Boxed</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i> Consultas </a></li>
                     @endcan
                 </ul>
             </li>

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Activity;
 use Illuminate\Http\Request;
 
-class ActividadController extends Controller
+class ActivityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +14,9 @@ class ActividadController extends Controller
      */
     public function index()
     {
-        //
-        return view('actividad.index');
+        $registro = Activity::all();
+        // dd($registro);
+        return view('actividad.index',compact('registro'));
     }
 
     /**

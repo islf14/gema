@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Equipo extends Model
+class Activity extends Model
 {
-    //
+     protected $table = 'tb_registro';
 }

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Carbon\Carbon;
-
-
 use DB;
+use App\Device;
+
+
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 class DeviceController extends Controller
 {
@@ -48,7 +50,13 @@ class DeviceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            Device::create($request->all());
+        } catch (QueryException $e) {
+            return redirect()->route('device.index')->with('info', 'Error: No se pudo registrar.');
+        }
+        return redirect()->route('device.index');
+        // dd($query);
     }
 
     /**
@@ -99,11 +107,12 @@ class DeviceController extends Controller
     public function listarequipos(){
 
         $equipo = DB::connection('mysql')->table('tb_equipo')
-            ->join('tb_tipoequipo', 'tb_equipo.TipoEquipo_idTipoEquipo', '=', 'tb_tipoequipo.idTipoEquipo')
-            ->join('tb_dependencia', 'tb_equipo.Dependencia_idDependencia', '=', 'tb_dependencia.idDependencia')
-            ->join('tb_estado', 'tb_equipo.Estado_idEstado', '=', 'tb_estado.idEstado')
-            ->join('tb_marca', 'tb_equipo.Marca_idMarca', '=', 'tb_marca.idMarca')
+            ->join('tb_tipoequipo', 'tb_equipo.idTipoEquipo', '=', 'tb_tipoequipo.idTipoEquipo')
+            ->join('tb_dependencia', 'tb_equipo.idDependencia', '=', 'tb_dependencia.idDependencia')
+            ->join('tb_estado', 'tb_equipo.idEstado', '=', 'tb_estado.idEstado')
+            ->join('tb_marca', 'tb_equipo.idMarca', '=', 'tb_marca.idMarca')
             ->select('tb_equipo.codigo_pat',
+            'tb_equipo.modelo',
             'tb_tipoequipo.nomTipoE',
             'tb_dependencia.nomDependencia',
             'tb_estado.nomEstado',
