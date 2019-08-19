@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use DB;
 use App\Device;
-
-
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;

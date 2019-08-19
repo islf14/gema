@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Activity;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 class ActivityController extends Controller
 {
@@ -26,8 +29,10 @@ class ActivityController extends Controller
      */
     public function create()
     {
-        //
-        return view('actividad.create');
+        $equipo = DB::table('tb_equipo')->get();
+        $fecha = Carbon::now();
+        // dd($equipo);
+        return view('actividad.create',compact('equipo','fecha'));
     }
 
     /**
@@ -38,7 +43,13 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        try {
+            Activity::create($request->all());
+        } catch (QueryException $e) {
+            return redirect()->route('activity.index')->with('info', 'Error: No se pudo registrar.');
+        }
+        return redirect()->route('activity.index');
     }
 
     /**

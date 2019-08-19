@@ -33,10 +33,10 @@ Route::middleware(['auth'])->group(function () {
   //Activity
   Route::get('actividad','ActivityController@index')->name('activity.index')->middleware('permiso:activity.index');
   Route::get('actividad/create','ActivityController@create')->name('activity.create')->middleware('permiso:activity.create');
-  Route::get('actividad/store','ActivityController@store')->name('activity.store')->middleware('permiso:activity.index');
+  Route::post('actividad/store','ActivityController@store')->name('activity.store')->middleware('permiso:activity.create');
   Route::get('actividad/{id}','ActivityController@show')->name('activity.show')->middleware('permiso:activity.show');
   Route::get('actividad/{id}/edit','ActivityController@edit')->name('activity.edit')->middleware('permiso:activity.edit');
-  Route::get('actividad/update/{id}','ActivityController@update')->name('activity.update')->middleware('permiso:activity.edit');
+  Route::post('actividad/update/{id}','ActivityController@update')->name('activity.update')->middleware('permiso:activity.edit');
   Route::get('actividad/delete/{id}','ActivityController@destroy')->name('activity.destroy')->middleware('permiso:activity.destroy');
 
   //Device

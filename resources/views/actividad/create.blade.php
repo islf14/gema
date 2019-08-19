@@ -28,7 +28,103 @@
 
     <!-- Main content -->
     <section class="content">
-        <h3>Create actividad</h3>
+      <form role="form" method="POST" action="{{ route('activity.store') }}">
+        @csrf
+        <div class="row">
+
+          <div class="col-md-12">
+            <div class="box box-success">
+              <div class="box-header with-border">
+                <h3 class="box-title">Equipo</h3>
+              </div>
+              <div class="box-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Seleccionar equipo</label>
+                      <select class="form-control select2" name="idEquipo" id="idEquipo" style="width: 100%;">
+                        <option value="" selected="selected">Seleccione...</option>
+                          @foreach ($equipo as $item)
+                            <option value="{{ $item->idEquipo}}">{{ $item->codigo_pat}}</option>
+                          @endforeach
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Fecha de registro:</label>
+                      <div class="input-group date">
+                        <div class="input-group-addon">
+                          <i class="fa fa-calendar"></i>
+                        </div>
+                        <input type="text" class="form-control pull-right" name="fecha" id="fecha" value="{{ $fecha }}">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="box box-info">
+              <div class="box-header">
+                <h3 class="box-title">Estado y datos de frabriación</h3>
+              </div>
+              <div class="box-body">
+                <div class="form-group">
+                  <label>Tipo de Mantenimiento</label>
+                  <select class="form-control" name="tipoMant" id="tipoMant">
+                    <option value="" selected>Seleccione...</option>
+                    <option value="Preventivo" >Preventivo</option>
+                    <option value="Correctivo" >Correctivo</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="problema">Problema manifestado por el usuario</label><br>
+                  <textarea class="form-control" name="problema" id="problema"  placeholder="Problema manifestado por el usuario..."></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="problema_real">Problema real encontrado</label><br>
+                  <textarea class="form-control" name="problema_real" id="problema_real"  placeholder="Problema real encontrado por el técnico en el equipo..."></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="solucion">Solución</label><br>
+                  <textarea class="form-control" name="solucion" id="solucion"  placeholder="Solución dada al problema..."></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="box box-primary">
+              <div class="box-header">
+                <h3 class="box-title">Datos de configuración</h3>
+              </div>
+              <div class="box-body">
+                <div class="form-group">
+                  <label>Encargado de hacer mantenimiento</label>
+                  <select class="form-control" name="user_id" id="user_id" readonly>
+                    <option value="{{ Auth::user()->id }}" selected>{{ Auth::user()->name }}</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="recomendaciones">Observaciones</label><br>
+                  <textarea class="form-control" name="recomendaciones" id="recomendaciones"  placeholder="Observaciones y recomendaciones..."></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="box-footer">
+              <a class="btn btn-default" href="javascript:window.history.back();">Cancelar</a>
+              <button type="submit" class="btn btn-info pull-right">Guardar</button>
+            </div>
+          </div>
+
+        </div>
+      </form>
     </section>
     <!-- /.content -->
   </div>
