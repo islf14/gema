@@ -4,6 +4,11 @@
     GEMA | Principal
 @endsection
 
+@section('link')
+  {{-- <link rel="stylesheet" href="{{asset('plugins/iCheck/all.css')}}"> --}}
+  <link rel="stylesheet" href="{{asset('bower_components/select2/dist/css/select2.min.css')}}">
+@endsection
+
 @section('actividad')
     active
 @endsection
@@ -129,4 +134,19 @@
     <!-- /.content -->
   </div>
   
+@endsection
+
+@section('script')
+  <script src="{{asset('bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+  <script src="{{asset('bower_components/moment/min/moment.min.js')}}"></script>
+  <script src="{{asset('bower_components/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js')}}"></script>
+  <script>
+    $(function () {
+      $('.select2').select2()
+
+      $('#fecha').datetimepicker({
+          format: 'YYYY-MM-DD HH:mm:ss'
+      });
+    })
+  </script>
 @endsection
