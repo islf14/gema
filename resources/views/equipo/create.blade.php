@@ -39,11 +39,10 @@
     <section class="content-header">
       <h1>
         Registrar Equipo
-        <small>Registrar un nuevo equipo</small>
+        <small>Registrar equipo de cómputo</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> GEMA</a></li>
-        <li><a href="#">Equipos</a></li>
+        <li><a><i class="fa fa-laptop"></i> Equipos</a></li>
         <li class="active">Nuevo</li>
       </ol>
     </section>

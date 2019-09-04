@@ -12,14 +12,13 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        Blank page
-        <small>it all starts here</small>
+      <h1>Tablero
+        <small></small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Mantenimiento</a></li>
-        <li><a href="#">General</a></li>
-        <li class="active">Equipo</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i>Tablero</a></li>
+        <li><a href="#">Tablero de mandos</a></li>
+        {{-- <li class="active">Equipo</li> --}}
       </ol>
     </section>
 
@@ -31,14 +30,14 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>150</h3>
+              <h3>{{$count_act}}</h3>
 
-              <p>New Orders</p>
+              <p>Actividades de mantenimiento</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="ion ion-stats-bars"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            {{-- <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> --}}
           </div>
         </div>
         <!-- ./col -->
@@ -46,14 +45,14 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-              <p>Bounce Rate</p>
+              <h3>{{$count_equ}}</h3>
+              {{-- <sup style="font-size: 20px">%</sup> --}}
+              <p>Equipos registrados</p>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            {{-- <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> --}}
           </div>
         </div>
         <!-- ./col -->
@@ -61,14 +60,14 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>44</h3>
+              <h3>{{$count_users}}</h3>
 
-              <p>User Registrations</p>
+              <p>Usuarios registrados</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            {{-- <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> --}}
           </div>
         </div>
         <!-- ./col -->
@@ -76,14 +75,14 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>65</h3>
+              <h3>{{$count_depen}}</h3>
 
-              <p>Unique Visitors</p>
+              <p>Dependencias</p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            {{-- <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> --}}
           </div>
         </div>
         <!-- ./col -->

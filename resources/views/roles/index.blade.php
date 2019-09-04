@@ -20,13 +20,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Roles index
-        <small>it all starts here</small>
+        Administración de roles
+        <small>Sección para administrar los roles</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Mantenimiento</a></li>
-        <li><a href="#">General</a></li>
-        <li class="active">Equipo</li>
+        <li><a><i class="fa fa-user"></i> Usuarios</a></li>
+        {{-- <li><a href="#">General</a></li> --}}
+        <li class="active">Roles</li>
       </ol>
     </section>
 

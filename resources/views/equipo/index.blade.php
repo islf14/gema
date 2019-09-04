@@ -39,10 +39,10 @@
     <section class="content-header">
       <h1>
         Equipos
-        <small>it all starts here</small>
+        <small>Listado de equipos de cómputo registrados</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-laptop"></i> Equipos</a></li>
+        <li><a><i class="fa fa-laptop"></i> Equipos</a></li>
         {{-- <li><a href="#">General</a></li> --}}
         <li class="active">Listado</li>
       </ol>

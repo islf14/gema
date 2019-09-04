@@ -4,6 +4,20 @@
     GEMA | Principal
 @endsection
 
+@section('link')
+  <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datatables.net/css/jquery.dataTables.min.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datatables.net/css/dataTables.min.css')}}">
+  <style>
+    div.dataTables_length {
+        padding-left: 2em;
+    }
+    div.dataTables_length,
+    div.dataTables_filter {
+        padding-top: 0.55em;
+    }
+  </style>
+@endsection
+
 @section('actividad')
     active
 @endsection
@@ -17,12 +31,11 @@
     <section class="content-header">
       <h1>
         Actividades
-        <small>it all starts here</small>
+        <small>Listado de actividades registradas</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Mantenimiento</a></li>
-        <li><a href="#">General</a></li>
-        <li class="active">Equipo</li>
+        <li><a><i class="fa fa-tasks"></i> Mantenimiento</a></li>
+        <li class="active">Listado</li>
       </ol>
     </section>
 
@@ -48,7 +61,7 @@
             @endif
 
             <div class="box-body">
-              <table id="equipos" class="table table-bordered table-striped">
+              <table id="actividad" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th>Id</th>
@@ -89,4 +102,12 @@
     <!-- /.content -->
   </div>
   
+@endsection
+
+@section('script')
+  <script src="{{asset('js/actividad.js')}}"></script>
+  <script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+  <script src="{{asset('bower_components/datatables.net/js/pdfmake.min.js')}}"></script>
+  <script src="{{asset('bower_components/datatables.net/js/vfs_fonts.js')}}"></script>
+  <script src="{{asset('bower_components/datatables.net/js/datatables.min.js')}}"></script>
 @endsection

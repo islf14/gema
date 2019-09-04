@@ -6,13 +6,13 @@
             </div>
             <div class="pull-left info">
                 <p>{{ Auth::user()->name }}</p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                <a href="#"><i class="fa fa-circle text-success"></i> En línea</a>
             </div>
         </div>
 
         <ul class="sidebar-menu" data-widget="tree">
 
-            <li class="header">MAIN NAVIGATION</li>
+            <li class="header">Menú de navegación</li>
 
             @hasanyrole('Super Admin|Administrador|Supervisor|Técnico|Observador|Tablero')
             <li class="treeview @yield('principal')">

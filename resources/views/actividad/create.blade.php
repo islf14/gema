@@ -21,13 +21,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Create actividad
-        <small>it all starts here</small>
+        Registar actividad
+        <small>Registar actividad realizada</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Mantenimiento</a></li>
-        <li><a href="#">General</a></li>
-        <li class="active">Equipo</li>
+        <li><a><i class="fa fa-tasks"></i> Mantenimiento</a></li>
+        {{-- <li><a href="#">General</a></li> --}}
+        <li class="active">Nuevo</li>
       </ol>
     </section>
 

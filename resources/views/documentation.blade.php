@@ -8,13 +8,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Documentaticón
-        <small>it all starts here</small>
+        Documentación
+        <small>Sección para indicaciones sobre usuarios y roles</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Mantenimiento</a></li>
-        <li><a href="#">General</a></li>
-        <li class="active">Equipo</li>
+        <li><a><i class="fa fa-book"></i> Documentación</a></li>
+        {{-- <a><a>General</a></a> --}}
+        {{-- <li class="active">Equipo</li> --}}
       </ol>
     </section>
 

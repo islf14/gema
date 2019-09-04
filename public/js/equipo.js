@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
     $('#equipos').DataTable({
         "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
         dom: 'Blfrtip',
@@ -8,8 +7,8 @@ $(document).ready(function() {
             'copy',
             'excel',
             'pdf',
-            'print',
-            'pageLength'
+            'print'
+            // 'pageLength'
         ],
         ajax: 'equipos',
         columns: [
@@ -21,5 +20,4 @@ $(document).ready(function() {
             { data: 'modelo' }
         ]
     });
-
 });

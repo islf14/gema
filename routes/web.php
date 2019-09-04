@@ -29,6 +29,7 @@ Route::middleware(['auth'])->group(function () {
 
   Route::get('/home', 'HomeController@index')->name('home');
   Route::get('/', 'PrincipalController@index')->name('principal');
+  Route::get('/count', 'PrincipalController@count')->name('count');
 
   //Activity
   Route::get('actividad','ActivityController@index')->name('activity.index')->middleware('permiso:activity.index');
