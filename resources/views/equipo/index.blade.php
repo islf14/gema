@@ -6,13 +6,10 @@
 
 @section('link')
   {{-- <link rel="stylesheet" href="{{asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}"> --}}
-  
   <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datatables.net/css/jquery.dataTables.min.css')}}">
   {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">  --}}
-
   <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datatables.net/css/dataTables.min.css')}}">
   {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/b-1.5.6/b-colvis-1.5.6/b-flash-1.5.6/b-html5-1.5.6/b-print-1.5.6/sl-1.3.0/datatables.min.css"/> --}}
-
   <style>
     div.dataTables_length {
         padding-left: 2em;
@@ -23,7 +20,6 @@
     }
   </style>
   
-
 @endsection
 
 @section('equipo')
@@ -79,10 +75,21 @@
                     <th>Estado</th>
                     <th>Marca</th>
                     <th>Modelo</th>
-                    
+                    <th>Editar</th>
                   </tr>
                 </thead>
                 <tbody>
+                  @foreach ($equipo as $item)
+                      <tr>
+                        <td>{{ $item->codigo_pat }}</td>
+                        <td>{{ $item->nomTipoE }}</td>
+                        <td>{{ $item->nomDependencia }}</td>
+                        <td>{{ $item->nomEstado }}</td>
+                        <td>{{ $item->nomMarca }}</td>
+                        <td>{{ $item->modelo }}</td>
+                        <td><button>editar</button></td>
+                      </tr>
+                  @endforeach
                 </tbody>
                 {{-- <tfoot>
                   <tr>

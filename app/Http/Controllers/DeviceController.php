@@ -17,8 +17,21 @@ class DeviceController extends Controller
      */
     public function index()
     {
-        //
-        return view('equipo.index');
+        $equipo = DB::connection('mysql')->table('tb_equipo')
+            ->join('tb_tipoequipo', 'tb_equipo.idTipoEquipo', '=', 'tb_tipoequipo.idTipoEquipo')
+            ->join('tb_dependencia', 'tb_equipo.idDependencia', '=', 'tb_dependencia.idDependencia')
+            ->join('tb_estado', 'tb_equipo.idEstado', '=', 'tb_estado.idEstado')
+            ->join('tb_marca', 'tb_equipo.idMarca', '=', 'tb_marca.idMarca')
+            ->select('tb_equipo.codigo_pat',
+            'tb_equipo.modelo',
+            'tb_tipoequipo.nomTipoE',
+            'tb_dependencia.nomDependencia',
+            'tb_estado.nomEstado',
+            'tb_marca.nomMarca')
+            ->get();
+        
+        // dd($equipo);
+        return view('equipo.index',compact('equipo'));
     }
 
     /**

@@ -63,7 +63,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Tipo de equipo</label>
-                      <select class="form-control select2" name="idTipoEquipo" id="idTipoEquipo" style="width: 100%;">
+                      <select class="form-control select2" name="idTipoEquipo" id="idTipoEquipo" required style="width: 100%;">
                         <option value="" selected="selected">Seleccione...</option>
                         @foreach ($tipoequipo as $item)
                             <option value="{{ $item->idTipoEquipo}}">{{ $item->nomTipoE}}</option>
@@ -78,7 +78,7 @@
                         <div class="input-group-addon">
                           <i class="fa fa-calendar"></i>
                         </div>
-                        <input type="text" class="form-control pull-right" name="fecha" id="fecha" value="{{ $fecha }}">
+                        <input type="text" class="form-control pull-right" name="fecha" id="fecha" required value="{{ $fecha }}">
                       </div>
                     </div>
                   </div>
@@ -95,7 +95,7 @@
               <div class="box-body">
                 <div class="form-group">
                   <label>Tipo de código</label>
-                  <select class="form-control" name="tipo_codigo" id="tipo_codigo">
+                  <select class="form-control" name="tipo_codigo" id="tipo_codigo" required>
                     <option value="">Seleccione</option>
                     <option value="Patrimonial">Patrimonial</option>
                     <option value="Interno">Interno</option>
@@ -103,15 +103,15 @@
                 </div>
                 <div class="form-group">
                   <label>Código</label>
-                  <input type="text" class="form-control" name="codigo_pat" id="codigo_pat" placeholder="Ejm: 11010010101">
+                  <input type="text" class="form-control" name="codigo_pat" id="codigo_pat" required placeholder="Ejm: 11010010101">
                 </div>
                 <div class="form-group">
                   <label>ubicación</label>
-                  <input type="text" class="form-control" name="ubicacion" id="ubicacion" placeholder="Ejm: SGTIC">
+                  <input type="text" class="form-control" name="ubicacion" id="ubicacion" required placeholder="Ejm: SGTIC">
                 </div>
                 <div class="form-group">
                   <label>Dependencia</label>
-                  <select class="form-control select2" name="idDependencia" id="idDependencia" style="width: 100%;">
+                  <select class="form-control select2" name="idDependencia" id="idDependencia" required style="width: 100%;">
                     <option value="" selected="selected">Seleccione</option>
                     @foreach ($dependencia as $item)
                         <option value="{{ $item->idDependencia }}">{{ $item->nomDependencia }}</option>
@@ -128,7 +128,7 @@
               <div class="box-body">
                 <div class="form-group">
                   <label>Estado</label>
-                  <select class="form-control" name="idEstado" id="idEstado">
+                  <select class="form-control" name="idEstado" id="idEstado" required>
                     <option value="" selected>Seleccione...</option>
                     @foreach ($estado as $item)
                         <option value="{{ $item->idEstado }}">{{ $item->nomEstado }}</option>
@@ -137,7 +137,7 @@
                 </div>
                 <div class="form-group">
                   <label>Marca</label>
-                  <select class="form-control select2" name="idMarca" id="idMarca" style="width: 100%;">
+                  <select class="form-control select2" name="idMarca" id="idMarca" required style="width: 100%;">
                     <option value="" selected="selected">Seleccione...</option>
                     @foreach ($marca as $item)
                         <option value="{{ $item->idMarca }}">{{ $item->nomMarca }}</option>
@@ -253,7 +253,7 @@
           <div class="col-md-12">
             <div class="box-footer">
               <a class="btn btn-default" href="javascript:window.history.back();">Cancelar</a>
-              <button type="submit" class="btn btn-info pull-right">Guardar</button>
+              <button type="submit" class="btn btn-info pull-right" id="btnGuardar">Guardar</button>
             </div>
           </div>
 
@@ -275,6 +275,8 @@
   <script src="{{asset('plugins/input-mask/jquery.inputmask.extensions.js')}}"></script>
   <!-- date-range-picker -->
   <script src="{{asset('bower_components/moment/min/moment.min.js')}}"></script>
+
+  <script src="{{asset('js/equipo_create.js')}}"></script>
   
   {{-- <script src="{{asset('bower_components/bootstrap-daterangepicker/daterangepicker.js')}}"></script> --}}
   <!-- bootstrap datepicker -->
