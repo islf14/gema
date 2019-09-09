@@ -1,7 +1,7 @@
 @extends('layouts.begin')
 
 @section('title')
-	Registrarse
+	Registrarse | GEMA
 @endsection
 
 @section('form')

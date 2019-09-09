@@ -1,13 +1,13 @@
 @extends('layouts.begin')
 
 @section('title')
-	Inicio de sesión
+	Inicio de sesión | GEMA
 @endsection
 
 @section('form')
 	<div class="card">
-		<div class="card-header">
-			<h3>Ingresar</h3>
+		<div class="card-header text-center">
+			<h3>Sistema de gestión de mantenimiento</h3>
 			{{-- <div class="d-flex justify-content-end social_icon">
 				<span><i class="fab fa-facebook-square"></i></span>
 				<span><i class="fab fa-google-plus-square"></i></span>
@@ -51,25 +51,27 @@
 							<input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
 							<label class="form-check-label links" for="remember">
-								{{ __('Remember Me') }}
+								{{ __('Recordar') }}
 							</label>
 						</div>
 					</div>
-				</div>
-
-				<div class="form-group">
-					{{-- <input type="submit" value="Login" class="btn float-right login_btn"> --}}
-					<button type="submit" class="btn float-right login_btn">
+					<div class="col-md-6">
+						<button type="submit" class="btn float-right login_btn">
 						{{ __('Ingresar') }}
 					</button>
+					</div>
+				</div>
 
-					@if (Route::has('password.request'))
+				{{-- <div class="form-group"> --}}
+					{{-- <input type="submit" value="Login" class="btn float-right login_btn"> --}}
+					
+					{{-- @if (Route::has('password.request'))
 						<a class="btn btn-link" href="{{ route('password.request') }}">
 								{{ __('¿Olvidaste tu contraseña?') }}
 						</a>
-					@endif
+					@endif --}}
 
-				</div>
+				{{-- </div> --}}
 			</form>
 		</div>
 		<div class="card-footer">

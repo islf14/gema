@@ -26,7 +26,7 @@ $(document).ready(function () {
                   <a href='usuario/${task.id}/edit' class='btn btn-success'><i class='fa fa-edit'></i> Editar </a>
                 </td>
                 <td width="10px">
-                  <button class="btn-delete btn btn-danger"><i class='fa fa-trash-o'></i> Delete</button>
+                  <button class="btn-delete btn btn-danger"><i class='fa fa-trash-o'></i> Eliminar</button>
                 </td>
             </tr>
           `

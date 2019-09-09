@@ -75,7 +75,9 @@
                     <th>Estado</th>
                     <th>Marca</th>
                     <th>Modelo</th>
+                    <th>Ver</th>
                     <th>Editar</th>
+                    <th>Eliminar</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -87,7 +89,9 @@
                         <td>{{ $item->nomEstado }}</td>
                         <td>{{ $item->nomMarca }}</td>
                         <td>{{ $item->modelo }}</td>
-                        <td><button>editar</button></td>
+                        <td><a href="{{ route('device.show',$item->idEquipo) }}" class="btn btn-xs btn-info"><i class='fa fa-newspaper-o'></i> Ver</a></td>
+                        <td><a href='#' class='btn btn-xs btn-success'><i class='fa fa-edit'></i> editar</a></td>
+                        <td><a href="" class="btn btn-xs btn-danger"><i class='fa fa-trash-o'></i> Eliminar</a></td>
                       </tr>
                   @endforeach
                 </tbody>

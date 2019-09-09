@@ -19,6 +19,7 @@
 
 	{{-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> --}}
 
+	  <link rel="shortcut icon" type="image/x-icon" href="{{ asset('dist/img/computer2.png')}}">
 
 </head>
 <body>

@@ -22,7 +22,8 @@ class DeviceController extends Controller
             ->join('tb_dependencia', 'tb_equipo.idDependencia', '=', 'tb_dependencia.idDependencia')
             ->join('tb_estado', 'tb_equipo.idEstado', '=', 'tb_estado.idEstado')
             ->join('tb_marca', 'tb_equipo.idMarca', '=', 'tb_marca.idMarca')
-            ->select('tb_equipo.codigo_pat',
+            ->select('tb_equipo.idEquipo',
+            'tb_equipo.codigo_pat',
             'tb_equipo.modelo',
             'tb_tipoequipo.nomTipoE',
             'tb_dependencia.nomDependencia',
@@ -78,7 +79,41 @@ class DeviceController extends Controller
      */
     public function show($id)
     {
-        //
+        $equipo = DB::connection('mysql')->table('tb_equipo')
+            ->join('tb_tipoequipo', 'tb_equipo.idTipoEquipo', '=', 'tb_tipoequipo.idTipoEquipo')
+            ->join('tb_dependencia', 'tb_equipo.idDependencia', '=', 'tb_dependencia.idDependencia')
+            ->join('tb_estado', 'tb_equipo.idEstado', '=', 'tb_estado.idEstado')
+            ->join('tb_marca', 'tb_equipo.idMarca', '=', 'tb_marca.idMarca')
+            
+            ->select('tb_equipo.*',
+            'tb_tipoequipo.nomTipoE',
+            'tb_dependencia.nomDependencia',
+            'tb_estado.nomEstado',
+            'tb_marca.nomMarca',)
+            ->where("tb_equipo.idEquipo","=","$id")
+            ->get();
+        
+            // ->join('tb_so', 'tb_equipo.idSO', '=', 'tb_so.idSO')
+            // ->join('tb_procesador', 'tb_equipo.idProcesador', '=', 'tb_procesador.idProcesador')
+ 
+            // 'tb_so.nomSO',
+            // 'tb_procesador.nomProcesador'
+        $so = null;
+        $procesador = null;
+        $idSO = $equipo[0]->idSO;
+        $idProcesador = $equipo[0]->idProcesador;
+        if ($idSO != null){
+            $so = DB::table('tb_so')
+            ->select('tb_so.nomSO')
+            ->where("tb_so.idSO","=","$idSO")->get();
+        }
+        if ($idProcesador != null){
+            $procesador = DB::table('tb_procesador')
+            ->select('tb_procesador.nomProcesador','tb_procesador.velocidad')
+            ->where("tb_procesador.idProcesador","=","$idProcesador")->get();
+        }
+        // dd($equipo);
+        return view('equipo.show',compact('equipo','so','procesador'));
     }
 
     /**
