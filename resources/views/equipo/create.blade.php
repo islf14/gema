@@ -191,8 +191,8 @@
                   <label>Acceso a internet</label>
                   <select class="form-control" name="acceso_internet" id="acceso_internet">
                     <option value="" selected>Seleccione...</option>
-                    <option value="si">Si</option>
-                    <option value="no">No</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
                   </select>
                 </div>
                 <div class="form-group">

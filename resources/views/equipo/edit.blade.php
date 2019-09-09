@@ -1,7 +1,7 @@
 @extends('layouts.gema')
 
 @section('title')
-    Nuevo Equipo | GEMA
+    Editar Equipo | GEMA
 @endsection
 
 @section('link')
@@ -29,7 +29,7 @@
 @section('equipo')
     active
 @endsection
-@section('equipo_create')
+@section('equipo_index')
     active
 @endsection
 
@@ -38,18 +38,19 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Registrar Equipo
-        <small>Registrar equipo de cómputo</small>
+        Editar Equipo
+        <small>Editar equipo de cómputo</small>
       </h1>
       <ol class="breadcrumb">
         <li><a><i class="fa fa-laptop"></i> Equipos</a></li>
-        <li class="active">Nuevo</li>
+        <li><a href="javascript:window.history.back();">Listado</a></li>
+        <li class="active">Editar</li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
-      <form role="form" method="POST" action="{{ route('device.store') }}">
+      <form role="form" method="POST" action="{{ route('device.update',$equipo[0]->id) }}">
         @csrf
         <div class="row">
 
@@ -65,8 +66,8 @@
                       <label>Tipo de equipo</label>
                       <select class="form-control select2" name="idTipoEquipo" id="idTipoEquipo" required style="width: 100%;">
                         <option value="" selected="selected">Seleccione...</option>
-                        @foreach ($tipoequipo as $item)
-                            <option value="{{ $item->idTipoEquipo}}">{{ $item->nomTipoE}}</option>
+                        @foreach ($li_tipoequipo as $item)
+                            <option {{ ($equipo[0]->nomTipoE == $item->nomTipoE) ? "selected":"" }} value="{{ $item->idTipoEquipo}}">{{ $item->nomTipoE}}</option>
                         @endforeach
                       </select>
                     </div>
@@ -78,7 +79,7 @@
                         <div class="input-group-addon">
                           <i class="fa fa-calendar"></i>
                         </div>
-                        <input type="text" class="form-control pull-right" name="fecha" id="fecha" required value="{{ $fecha }}">
+                        <input type="text" class="form-control pull-right" name="fecha" id="fecha" required readonly value="{{ $equipo[0]->fecha }}">
                       </div>
                     </div>
                   </div>
@@ -97,24 +98,24 @@
                   <label>Tipo de código</label>
                   <select class="form-control" name="tipo_codigo" id="tipo_codigo" required>
                     <option value="">Seleccione</option>
-                    <option value="Patrimonial">Patrimonial</option>
-                    <option value="Interno">Interno</option>
+                    <option {{ ($equipo[0]->tipo_codigo == "Patrimonial") ? "selected":"" }} value="Patrimonial">Patrimonial</option>
+                    <option {{ ($equipo[0]->tipo_codigo == "Interno") ? "selected":"" }} value="Interno">Interno</option>
                   </select>
                 </div>
                 <div class="form-group">
                   <label>Código</label>
-                  <input type="text" class="form-control" name="codigo_pat" id="codigo_pat" required placeholder="Ejm: 11010010101">
+                  <input type="text" class="form-control" name="codigo_pat" id="codigo_pat" required placeholder="Ejm: 11010010101" value="{{ $equipo[0]->codigo_pat }}">
                 </div>
                 <div class="form-group">
                   <label>ubicación</label>
-                  <input type="text" class="form-control" name="ubicacion" id="ubicacion" required placeholder="Ejm: SGTIC">
+                  <input type="text" class="form-control" name="ubicacion" id="ubicacion" required placeholder="Ejm: SGTIC" value="{{ $equipo[0]->ubicacion }}">
                 </div>
                 <div class="form-group">
                   <label>Dependencia</label>
                   <select class="form-control select2" name="idDependencia" id="idDependencia" required style="width: 100%;">
                     <option value="" selected="selected">Seleccione</option>
-                    @foreach ($dependencia as $item)
-                        <option value="{{ $item->idDependencia }}">{{ $item->nomDependencia }}</option>
+                    @foreach ($li_dependencia as $item)
+                        <option {{ ($equipo[0]->nomDependencia == $item->nomDependencia) ? "selected":"" }} value="{{ $item->idDependencia }}">{{ $item->nomDependencia }}</option>
                     @endforeach
                   </select>
                 </div>
@@ -130,8 +131,8 @@
                   <label>Estado</label>
                   <select class="form-control" name="idEstado" id="idEstado" required>
                     <option value="" selected>Seleccione...</option>
-                    @foreach ($estado as $item)
-                        <option value="{{ $item->idEstado }}">{{ $item->nomEstado }}</option>
+                    @foreach ($li_estado as $item)
+                        <option {{ ($equipo[0]->nomEstado == $item->nomEstado) ? "selected":"" }} value="{{ $item->idEstado }}">{{ $item->nomEstado }}</option>
                     @endforeach
                   </select>
                 </div>
@@ -139,22 +140,22 @@
                   <label>Marca</label>
                   <select class="form-control select2" name="idMarca" id="idMarca" required style="width: 100%;">
                     <option value="" selected="selected">Seleccione...</option>
-                    @foreach ($marca as $item)
-                        <option value="{{ $item->idMarca }}">{{ $item->nomMarca }}</option>
+                    @foreach ($li_marca as $item)
+                        <option {{ ($equipo[0]->nomMarca == $item->nomMarca) ? "selected":"" }} value="{{ $item->idMarca }}">{{ $item->nomMarca }}</option>
                     @endforeach
                   </select>
                 </div>
                 <div class="form-group">
                   <label>Modelo</label>
-                  <input type="text" class="form-control" name="modelo" id="modelo" placeholder="Ejm: MRF-345">
+                  <input type="text" class="form-control" name="modelo" id="modelo" placeholder="Ejm: MRF-345" value="{{ $equipo[0]->modelo }}">
                 </div>
                 <div class="form-group">
                   <label>Serie</label>
-                  <input type="text" class="form-control" name="serie" id="serie" placeholder="Ejm: 2FTEE3G">
+                  <input type="text" class="form-control" name="serie" id="serie" placeholder="Ejm: 2FTEE3G" value="{{ $equipo[0]->serie }}">
                 </div>
                 <div class="form-group">
                   <label>RAM</label>
-                  <input type="text" class="form-control" name="ram" id="ram" placeholder="Ejm: 2 GB">
+                  <input type="text" class="form-control" name="ram" id="ram" placeholder="Ejm: 2 GB" value="{{ $equipo[0]->ram }}">
                 </div>
                 <div class="form-group">
                   <label>MAC</label>
@@ -162,7 +163,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-laptop"></i>
                     </div>
-                    <input type="text" class="form-control" name="mac" id="mac">
+                    <input type="text" class="form-control" name="mac" id="mac" value="{{ $equipo[0]->mac }}">
                   </div>
                 </div>
               </div>
@@ -177,22 +178,22 @@
               <div class="box-body">
                 <div class="form-group">
                   <label>Dominio</label>
-                  <input type="text" class="form-control" name="dominio" id="dominio" placeholder="mdcgal" value="mdcgal">
+                  <input type="text" class="form-control" name="dominio" id="dominio" placeholder="mdcgal" value="mdcgal" value="{{ $equipo[0]->dominio }}">
                 </div>
                 <div class="form-group">
                   <label>Nombre de equipo</label>
-                  <input type="text" class="form-control" name="nom_equipo" id="nom_equipo" placeholder="MDCGAL0001">
+                  <input type="text" class="form-control" name="nom_equipo" id="nom_equipo" placeholder="MDCGAL0001" value="{{ $equipo[0]->nom_equipo }}">
                 </div>
                 <div class="form-group">
                   <label>Nombre usuario</label>
-                  <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Usuario">
+                  <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Usuario" value="{{ $equipo[0]->usuario }}">
                 </div>
                 <div class="form-group">
                   <label>Acceso a internet</label>
                   <select class="form-control" name="acceso_internet" id="acceso_internet">
                     <option value="" selected>Seleccione...</option>
-                    <option value="si">Si</option>
-                    <option value="no">No</option>
+                    <option {{ ($equipo[0]->acceso_internet == "Si") ? "selected":"" }} value="Si">Si</option>
+                    <option {{ ($equipo[0]->acceso_internet == "No") ? "selected":"" }} value="No">No</option>
                   </select>
                 </div>
                 <div class="form-group">
@@ -201,7 +202,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-laptop"></i>
                     </div>
-                    <input type="text" class="form-control" name="ip" id="ip" data-inputmask="'alias': 'ip'" data-mask>
+                    <input type="text" class="form-control" name="ip" id="ip" data-inputmask="'alias': 'ip'" data-mask value="{{ $equipo[0]->ip }}">
                   </div>
                 </div>
               </div>
@@ -216,21 +217,21 @@
                   <label>Sistema Operativo</label>
                   <select class="form-control select2" name="idSO" id="idSO" style="width: 100%;">
                     <option value="" selected="selected">Seleccione...</option>
-                    @foreach ($so as $item)
-                        <option value="{{ $item->idSO }}">{{ $item->nomSO}}</option>
+                    @foreach ($li_so as $item)
+                        <option {{ ($so == null) ? "":(($so[0]->nomSO == $item->nomSO) ? "selected":"") }} value="{{ $item->idSO }}">{{ $item->nomSO}}</option>
                     @endforeach
                   </select>
                 </div>
                 <div class="form-group">
                   <label>Licencia de sistema operativo</label>
-                  <input type="text" class="form-control" name="licencia_w" id="licencia_w" placeholder="Licencia de SO">
+                  <input type="text" class="form-control" name="licencia_w" id="licencia_w" placeholder="Licencia de SO" value="{{ $equipo[0]->licencia_w }}">
                 </div>
                 <div class="form-group">
                   <label>Procesador</label>
                   <select class="form-control select2" name="idProcesador" id="idProcesador" style="width: 100%;">
                     <option value="" selected="selected">Seleccione...</option>
-                    @foreach ($procesador as $item)
-                        <option value="{{ $item->idProcesador }}">{{ $item->nomProcesador }} {{ $item->velocidad }}</option>
+                    @foreach ($li_procesador as $item)
+                        <option {{ ($procesador == null) ? "":(($procesador[0]->nomProcesador == $item->nomProcesador) ? "selected":"") }} value="{{ $item->idProcesador }}">{{ $item->nomProcesador }} {{ $item->velocidad }}</option>
                     @endforeach
                   </select>
                 </div>
@@ -244,7 +245,7 @@
               <div class="box-body">
                 <div class="form-group">
                   <label for="observaciones">Observaciones</label><br>
-                  <textarea class="form-control" name="observaciones" id="observaciones"  placeholder="Observaciones..."></textarea>
+                  <textarea class="form-control" name="observaciones" id="observaciones"  placeholder="Observaciones...">{{ $equipo[0]->observaciones }}</textarea>
                 </div>
               </div>
             </div>
@@ -253,7 +254,7 @@
           <div class="col-md-12">
             <div class="box-footer">
               <a class="btn btn-default" href="javascript:window.history.back();">Cancelar</a>
-              <button type="submit" class="btn btn-info pull-right" id="btnGuardar">Guardar</button>
+              <button type="submit" class="btn btn-info pull-right" id="btnGuardar">Actualizar</button>
             </div>
           </div>
 
@@ -276,7 +277,7 @@
   <!-- date-range-picker -->
   <script src="{{asset('bower_components/moment/min/moment.min.js')}}"></script>
 
-  <script src="{{asset('js/equipo_create.js')}}"></script>
+  <script src="{{asset('js/equipo_edit.js')}}"></script>
   
   {{-- <script src="{{asset('bower_components/bootstrap-daterangepicker/daterangepicker.js')}}"></script> --}}
   <!-- bootstrap datepicker -->
