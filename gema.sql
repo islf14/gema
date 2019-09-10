@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 16-08-2019 a las 03:35:17
+-- Tiempo de generación: 10-09-2019 a las 07:38:44
 -- Versión del servidor: 5.7.18-log
 -- Versión de PHP: 7.3.4
 
@@ -241,7 +241,7 @@ INSERT INTO `tb_dependencia` (`idDependencia`, `nomDependencia`, `sigla`, `sede`
 --
 
 CREATE TABLE `tb_equipo` (
-  `idEquipo` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `tipo_codigo` varchar(15) CHARACTER SET utf8 DEFAULT NULL,
   `codigo_pat` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
   `ubicacion` varchar(10) CHARACTER SET utf8 DEFAULT NULL,
@@ -258,6 +258,7 @@ CREATE TABLE `tb_equipo` (
   `fecha` datetime DEFAULT NULL,
   `grupo` int(11) DEFAULT NULL,
   `observaciones` varchar(800) CHARACTER SET utf8 DEFAULT NULL,
+  `Estado` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `idTipoEquipo` int(11) NOT NULL,
   `idDependencia` int(11) NOT NULL,
   `idEstado` int(11) NOT NULL,
@@ -272,15 +273,17 @@ CREATE TABLE `tb_equipo` (
 -- Volcado de datos para la tabla `tb_equipo`
 --
 
-INSERT INTO `tb_equipo` (`idEquipo`, `tipo_codigo`, `codigo_pat`, `ubicacion`, `modelo`, `serie`, `ram`, `dominio`, `ip`, `mac`, `nom_equipo`, `usuario`, `licencia_w`, `acceso_internet`, `fecha`, `grupo`, `observaciones`, `idTipoEquipo`, `idDependencia`, `idEstado`, `idMarca`, `idSO`, `idProcesador`, `created_at`, `updated_at`) VALUES
-(1, 'Patrimonial', '12345678910', 'SGTIC', NULL, NULL, '2GB', 'mdcgal', '192.168.2.100', NULL, NULL, NULL, NULL, 'si', '2019-05-30 10:25:00', 1, NULL, 1, 1, 1, 1, 2, 16, NULL, NULL),
-(2, 'Patrimonial', '12342342425', 'SGTIC', NULL, NULL, NULL, NULL, '192.168.2.1', NULL, NULL, NULL, NULL, 'si', '2019-05-30 08:00:00', 2, NULL, 1, 1, 1, 2, 5, 15, NULL, NULL),
-(3, 'patrimonial', '56765765765', 'SGTIC', NULL, NULL, '2GB', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-14 23:30:35', NULL, NULL, 1, 1, 2, 1, NULL, NULL, NULL, NULL),
-(4, 'patrimonial', '98388338', 'SGTIC', NULL, NULL, '2GB', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 23:30:35', NULL, NULL, 1, 1, 2, 1, NULL, NULL, NULL, NULL),
-(5, 'Patrimonial', '76576576', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 2, 2, 2, '2019-08-16 00:55:25', '2019-08-16 00:55:25'),
-(6, 'Interno', '76576576', 'sgtic', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'si', '2019-08-15 19:58:15', NULL, NULL, 2, 2, 2, 2, 1, 2, '2019-08-16 01:20:46', '2019-08-16 01:20:46'),
-(7, 'Patrimonial', '192334832947', 'SGTIC', 'jlk78', 'lkj798jl', '2 GB', NULL, '192.168.1.13', '3G:2H:5H:5H', NULL, 'Usuario', 'KJL234L23KJ5LK345LK', 'si', '2019-08-15 20:47:42', NULL, NULL, 1, 1, 1, 3, 2, 18, '2019-08-16 01:49:33', '2019-08-16 01:49:33'),
-(8, 'Patrimonial', '7882334832947', 'Alcaldía', 'jlk78', 'lkj798jl', '2 GB', 'mdcgal', '192.168.2.13', '3G:2H:5H:5H', 'MDCGAL003', 'Juan', 'KJL234L23KJ5LK345LK', 'si', '2019-08-15 21:36:52', NULL, 'no hay observaciones', 1, 2, 1, 4, 6, 17, '2019-08-16 02:38:51', '2019-08-16 02:38:51');
+INSERT INTO `tb_equipo` (`id`, `tipo_codigo`, `codigo_pat`, `ubicacion`, `modelo`, `serie`, `ram`, `dominio`, `ip`, `mac`, `nom_equipo`, `usuario`, `licencia_w`, `acceso_internet`, `fecha`, `grupo`, `observaciones`, `Estado`, `idTipoEquipo`, `idDependencia`, `idEstado`, `idMarca`, `idSO`, `idProcesador`, `created_at`, `updated_at`) VALUES
+(1, 'Patrimonial', '12345678910', 'SGTIC', NULL, NULL, '2GB', 'mdcgal', '192.168.2.100', NULL, NULL, NULL, NULL, 'Si', '2019-05-30 10:25:00', 1, NULL, 'Eliminado', 1, 1, 1, 1, 2, 16, NULL, '2019-09-10 04:04:55'),
+(2, 'Patrimonial', '12342342425', 'SGTIC', NULL, NULL, NULL, NULL, '192.168.2.1', NULL, NULL, NULL, NULL, 'Si', '2019-05-30 08:00:00', 2, NULL, 'Eliminado', 1, 1, 1, 2, 5, 15, NULL, '2019-09-10 05:01:38'),
+(3, 'Patrimonial', '56765765765', 'SGTIC', NULL, NULL, '2GB', 'mdcgal', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-14 23:30:35', NULL, NULL, 'Eliminado', 1, 1, 2, 1, NULL, NULL, NULL, '2019-09-10 04:46:17'),
+(4, 'Patrimonial', '98388338', 'SGTIC', NULL, NULL, '2GB', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 23:30:35', NULL, NULL, 'Activo', 1, 1, 2, 1, NULL, NULL, NULL, NULL),
+(5, 'Patrimonial', '76576576', 'SGTIC', NULL, NULL, NULL, 'mdcgal', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 23:30:35', NULL, 'kjh', 'Activo', 1, 1, 1, 2, 2, 2, '2019-08-16 00:55:25', '2019-09-10 03:18:49'),
+(6, 'Interno', '76576576', 'sgtic', NULL, NULL, NULL, 'mdcgal', NULL, NULL, NULL, NULL, NULL, 'Si', '2019-08-15 19:58:15', NULL, NULL, 'Eliminado', 2, 2, 2, 2, 1, 2, '2019-08-16 01:20:46', '2019-09-10 05:14:56'),
+(7, 'Patrimonial', '192334832947', 'SGTIC', 'abc', 'bnm', '2 GB', 'mdcgal', '192.168.1.13', '3G:2H:5H:5H', NULL, 'Usuario', 'yuyuyuyuyu', 'Si', '2019-08-15 20:47:42', NULL, 'no hay', 'Eliminado', 1, 1, 1, 3, 2, 18, '2019-08-16 01:49:33', '2019-09-10 04:03:59'),
+(8, 'Patrimonial', '7882334832947', 'Alcaldía', 'M45', 'lkj798jl', '2 GB', 'mdcgal', '192.168.2.13', '3G:2H:5H:5H', 'MDCGAL003', 'Juan', 'KJL234L23KJ5LK345LK', 'Si', '2019-08-15 21:36:52', NULL, 'no hay observaciones', 'Eliminado', 1, 2, 1, 4, 6, 17, '2019-08-16 02:38:51', '2019-09-10 03:37:18'),
+(9, 'Patrimonial', '576576576576576', 'SGTIC', NULL, NULL, NULL, 'mdcgal', NULL, NULL, NULL, NULL, NULL, NULL, '2019-09-09 22:35:23', NULL, NULL, 'Eliminado', 3, 1, 1, 1, NULL, NULL, '2019-09-10 03:36:12', '2019-09-10 05:14:52'),
+(10, 'Patrimonial', '64654654654654', 'sgtic', NULL, NULL, NULL, 'mdcgal', NULL, NULL, NULL, NULL, NULL, NULL, '2019-09-09 22:38:02', NULL, NULL, 'Activo', 4, 1, 2, 4, NULL, NULL, '2019-09-10 03:38:42', '2019-09-10 03:38:42');
 
 -- --------------------------------------------------------
 
@@ -368,14 +371,15 @@ INSERT INTO `tb_procesador` (`idProcesador`, `nomProcesador`, `velocidad`) VALUE
 --
 
 CREATE TABLE `tb_registro` (
-  `idRegistro` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `problema` varchar(250) CHARACTER SET utf8 DEFAULT NULL,
+  `problema_real` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `solucion` varchar(300) CHARACTER SET utf8 DEFAULT NULL,
   `fecha` datetime DEFAULT NULL,
   `tipoMant` varchar(15) CHARACTER SET utf8 DEFAULT NULL,
   `recomendaciones` varchar(300) CHARACTER SET utf8 DEFAULT NULL,
   `user_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `Equipo_idEquipo` int(11) DEFAULT NULL,
+  `idEquipo` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -384,10 +388,13 @@ CREATE TABLE `tb_registro` (
 -- Volcado de datos para la tabla `tb_registro`
 --
 
-INSERT INTO `tb_registro` (`idRegistro`, `problema`, `solucion`, `fecha`, `tipoMant`, `recomendaciones`, `user_id`, `Equipo_idEquipo`, `created_at`, `updated_at`) VALUES
-(1, 'se detecto que el ventilador no gira', 'se hizo limpiza', '2019-05-30 09:00:00', 'Correctivo', 'se recomienda hacer un seguimiento', 2, 1, NULL, NULL),
-(2, 'se detecto que el ventilador no gira', 'se hizo limpiza', '2019-05-30 09:00:00', 'Correctivo', 'se recomienda hacer un seguimiento', 2, 1, NULL, NULL),
-(3, 'se detecto que el ventilador no gira', 'se hizo limpiza', '2019-05-30 09:00:00', 'Correctivo', 'se recomienda hacer un seguimiento', 2, 1, NULL, NULL);
+INSERT INTO `tb_registro` (`id`, `problema`, `problema_real`, `solucion`, `fecha`, `tipoMant`, `recomendaciones`, `user_id`, `idEquipo`, `created_at`, `updated_at`) VALUES
+(1, 'se detecto que el ventilador no gira', NULL, 'se hizo limpiza', '2019-05-30 09:00:00', 'Correctivo', 'se recomienda hacer un seguimiento', 2, 1, NULL, NULL),
+(2, 'se detecto que el ventilador no gira', NULL, 'se hizo limpiza', '2019-05-30 09:00:00', 'Correctivo', 'se recomienda hacer un seguimiento', 2, 1, NULL, NULL),
+(3, 'se detecto que el ventilador no gira', NULL, 'se hizo limpiza', '2019-05-30 09:00:00', 'Correctivo', 'se recomienda hacer un seguimiento', 2, 1, NULL, NULL),
+(4, 'no enciende', 'error en la fuente', 'reemplazo de fuente', '2019-08-17 12:38:04', NULL, NULL, 1, 4, '2019-08-17 17:43:10', '2019-08-17 17:43:10'),
+(5, 'no enciende', 'cable poder roto', 'cambio de cable', '2019-08-17 12:47:54', 'Preventivo', 'se recomienda cambiar lugar', 1, 1, '2019-08-17 17:48:43', '2019-08-17 17:48:43'),
+(6, 'jkh', 'kjh', 'kjh', '2019-08-17 12:49:53', NULL, 'kjh', 1, NULL, '2019-08-17 17:50:01', '2019-08-17 17:50:01');
 
 -- --------------------------------------------------------
 
@@ -468,7 +475,7 @@ INSERT INTO `users` (`id`, `name`, `lastname`, `email`, `phone`, `dni`, `nivel`,
 (1, 'SuperAdmin', 'Ad', 'superadmin@mdcgal.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$cI5JrXNVKhVMASMgRm0fR.TstsJgfTowjDdEZAkaNi0lhTennW91C', NULL, '2019-07-20 00:14:17', '2019-07-20 00:14:17'),
 (2, 'Administrador', NULL, 'admin@mdcgal.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$4wmFUAZb5oIoZUSGUkdhT.U5nIyTutWGJh.zQ4C0JlJWABCSIojwu', NULL, '2019-07-25 21:54:44', '2019-08-08 09:53:40'),
 (3, 'Supervisor', NULL, 'supervisor@mdcgal.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$5AVl76U60gSGADIavAvjfOfhrv.M3mqN87VGr2k/S6lFphkncGeVu', NULL, '2019-08-05 00:34:17', '2019-08-08 09:49:53'),
-(4, 'usuario2', 'usuario', 'user2@mdcgal.com', '95555555', '66778899', NULL, NULL, NULL, '$2y$10$Cpvm8XcAt4I/PBOAq.dtbORw4h3ZzqxNP02R078dYcQC6jr.tuD2m', NULL, '2019-08-05 03:10:39', '2019-08-07 05:53:50'),
+(4, 'usuario2', 'usuario', 'user2@mdcgal.com', '95555555', '66778899', NULL, NULL, NULL, '$2y$10$Cpvm8XcAt4I/PBOAq.dtbORw4h3ZzqxNP02R078dYcQC6jr.tuD2m', 'TfYC3f4bFLQMmTGkLCvUMflB1Ez7hh7XG6a4wn7wLCk1e5fEZpVB3O0JiWJP', '2019-08-05 03:10:39', '2019-08-07 05:53:50'),
 (17, 'Patricio', 'Melendez', 'user3@mdcgal.com', '9878787', '89898898', NULL, NULL, '2019-08-08 07:38:24', '$2y$10$pywgU4/tmaxGkN7AWUJke.nfWCEC0ZH1RDvselnZ6aK30Q7nanIaG', 'GN1cSm1Z8YVAgdOurzU1pvEhnlUyHaGFdkBNMMqBMYXzHF2uzMZoDMCLOq1H', '2019-08-08 07:38:24', '2019-08-09 06:14:40'),
 (19, 'Vesta Abshire', NULL, 'roman.kozey@example.org', NULL, NULL, NULL, NULL, '2019-08-08 07:38:24', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '58WEwc2sIJ', '2019-08-08 07:38:25', '2019-08-08 07:38:25'),
 (20, 'Prof. Zetta Lakin', NULL, 'carey86@example.org', NULL, NULL, NULL, NULL, '2019-08-08 07:38:24', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'BSHikyhxTb', '2019-08-08 07:38:25', '2019-08-08 07:38:25'),
@@ -568,7 +575,7 @@ ALTER TABLE `tb_dependencia`
 -- Indices de la tabla `tb_equipo`
 --
 ALTER TABLE `tb_equipo`
-  ADD PRIMARY KEY (`idEquipo`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `fk_Equipo_TipoEquipo_idx` (`idTipoEquipo`),
   ADD KEY `fk_Equipo_Dependencia1_idx` (`idDependencia`),
   ADD KEY `fk_Equipo_Estado1_idx` (`idEstado`),
@@ -598,8 +605,8 @@ ALTER TABLE `tb_procesador`
 -- Indices de la tabla `tb_registro`
 --
 ALTER TABLE `tb_registro`
-  ADD PRIMARY KEY (`idRegistro`),
-  ADD KEY `fk_Registro_Equipo1_idx` (`Equipo_idEquipo`),
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_Registro_Equipo1_idx` (`idEquipo`),
   ADD KEY `Índice 3` (`user_id`);
 
 --
@@ -666,7 +673,7 @@ ALTER TABLE `tb_dependencia`
 -- AUTO_INCREMENT de la tabla `tb_equipo`
 --
 ALTER TABLE `tb_equipo`
-  MODIFY `idEquipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_estado`
@@ -690,7 +697,7 @@ ALTER TABLE `tb_procesador`
 -- AUTO_INCREMENT de la tabla `tb_registro`
 --
 ALTER TABLE `tb_registro`
-  MODIFY `idRegistro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_so`
@@ -755,7 +762,7 @@ ALTER TABLE `tb_equipo`
 --
 ALTER TABLE `tb_registro`
   ADD CONSTRAINT `FK_registro_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `fk_Registro_Equipo1` FOREIGN KEY (`Equipo_idEquipo`) REFERENCES `tb_equipo` (`idEquipo`);
+  ADD CONSTRAINT `fk_Registro_Equipo1` FOREIGN KEY (`idEquipo`) REFERENCES `tb_equipo` (`id`);
 
 --
 -- Filtros para la tabla `users`
