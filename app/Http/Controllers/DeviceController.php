@@ -29,6 +29,7 @@ class DeviceController extends Controller
             'tb_dependencia.nomDependencia',
             'tb_estado.nomEstado',
             'tb_marca.nomMarca')
+            ->where("tb_equipo.Estado","=","Activo")
             ->get();
         
         // dd($equipo);
@@ -63,6 +64,7 @@ class DeviceController extends Controller
     public function store(Request $request)
     {
         try {
+            $request['Estado'] = "Activo";
             Device::create($request->all());
         } catch (QueryException $e) {
             return redirect()->route('device.index')->with('info', 'Error: No se pudo registrar.');
@@ -184,7 +186,9 @@ class DeviceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $query['Estado'] = "Eliminado";
+        Device::find($id)->update($query);
+        return redirect()->route('device.index');
     }
 
     public function listarequipos(){

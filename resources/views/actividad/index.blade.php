@@ -69,18 +69,30 @@
                     <th>Solución</th>
                     <th>Fecha</th>
                     <th>Tipo mant.</th>
+                    <th>Ver</th>
                     <th>Editar</th>
+                    <th>Eliminar</th>
                   </tr>
                 </thead>
                 <tbody>
                   @foreach ($registro as $item)
                       <tr>
-                        <td>{{ $item->idRegistro }}</td>
+                        <td>{{ $item->id }}</td>
                         <td>{{ $item->problema }}</td>
                         <td>{{ $item->solucion }}</td>
                         <td>{{ $item->fecha }}</td>
                         <td>{{ $item->tipoMant }}</td>
-                        <td><button>editar</button></td>
+                        <td><a href="{{ route('activity.show',$item->id) }}" class="btn btn-xs btn-info"><i class='fa fa-newspaper-o'></i> Ver</a></td>
+                        <td><a href="{{ route('activity.edit',$item->id) }}" class='btn btn-xs btn-success'><i class='fa fa-edit'></i> Editar</a></td>
+
+                        <td>
+                          {{-- <form method="post" action="{{ route('device.destroy',$item->id) }}" onsubmit="return confirmarenvioo();">
+                              @csrf
+                              <button  type="submit" class="btn btn-xs btn-danger" id="btn-confirm"><i class="fa fa-trash-o"> </i> Eliminar</button>
+                          </form> --}}
+
+                          <a href="{{ route('activity.destroy',$item->id) }}" class="btn btn-xs btn-danger"><i class='fa fa-trash-o'></i> Eliminar</a>
+                        </td>
                       </tr>
                   @endforeach
                 </tbody>

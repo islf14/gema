@@ -46,6 +46,24 @@
 
     <section class="content">
 
+      {{-- <button class="btn btn-default" id="btn-confirm">Confirm</button> --}}
+
+      <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Confirmar</h4>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" id="modal-btn-si">Si</button>
+              <button type="button" class="btn btn-primary" id="modal-btn-no">No</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{-- <div class="alert" role="alert" id="result"></div> --}}
+
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
@@ -91,7 +109,15 @@
                         <td>{{ $item->modelo }}</td>
                         <td><a href="{{ route('device.show',$item->id) }}" class="btn btn-xs btn-info"><i class='fa fa-newspaper-o'></i> Ver</a></td>
                         <td><a href="{{ route('device.edit',$item->id) }}" class='btn btn-xs btn-success'><i class='fa fa-edit'></i> Editar</a></td>
-                        <td><a href="#" class="btn btn-xs btn-danger"><i class='fa fa-trash-o'></i> Eliminar</a></td>
+
+                        <td>
+                          <form method="post" action="{{ route('device.destroy',$item->id) }}" onsubmit="return confirmarenvioo();">
+                              @csrf
+                              <button  type="submit" class="btn btn-xs btn-danger" id="btn-confirm"><i class="fa fa-trash-o"> </i> Eliminar</button>
+                          </form>
+
+                          {{-- <a href="{{ route('device.destroy',$item->id) }}" class="btn btn-xs btn-danger"><i class='fa fa-trash-o'></i> Eliminar</a> --}}
+                        </td>
                       </tr>
                   @endforeach
                 </tbody>

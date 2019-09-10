@@ -47,7 +47,7 @@ Route::middleware(['auth'])->group(function () {
   Route::get('equipo/{id}','DeviceController@show')->name('device.show')->middleware('permiso:device.show');
   Route::get('equipo/{id}/edit','DeviceController@edit')->name('device.edit')->middleware('permiso:device.edit');
   Route::post('equipo/update/{id}','DeviceController@update')->name('device.update')->middleware('permiso:device.edit');
-  Route::get('equipo/delete/{id}','DeviceController@destroy')->name('device.destroy')->middleware('permiso:device.destroy');
+  Route::post('equipo/delete/{id}','DeviceController@destroy')->name('device.destroy')->middleware('permiso:device.destroy');
 
   Route::get('equipos','DeviceController@listarequipos');
 

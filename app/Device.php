@@ -24,6 +24,7 @@ class Device extends Model
         'fecha',
         'grupo',
         'observaciones',
+        'Estado',
         'idTipoEquipo',
         'idDependencia',
         'idEstado',
