@@ -23,7 +23,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                <li class="@yield('principal')"><a href="{{route('principal')}}"><i class="fa fa-circle-o"></i>Tablero de mandos</a></li>
+                <li class="@yield('principal')"><a href="{{route('principal')}}"><i class="fa fa-circle-o"></i>Tablero informativo</a></li>
                 {{-- <li><a href="#"><i class="fa fa-circle-o"></i>##</a></li> --}}
                 </ul>
             </li>
@@ -38,10 +38,10 @@
                 </span>
                 </a>
                 <ul class="treeview-menu">
-                    @can('maintenance.index')
+                    @can('activity.index')
                         <li class="@yield('actividad_index')"><a href="{{ route('activity.index') }}"><i class="fa fa-circle-o"></i>Listar actividades</a></li>
                     @endcan
-                    @can('maintenance.index')
+                    @can('activity.create')
                         <li class="@yield('actividad_create')"><a href="{{ route('activity.create') }}"><i class="fa fa-circle-o"></i>Registrar actividad</a></li>
                     @endcan
                 </ul>
@@ -61,7 +61,7 @@
                     @can('device.index')
                         <li class="@yield('equipo_index')"><a href="{{ route('device.index') }}"><i class="fa fa-circle-o"></i> Listar equipos</a></li>
                     @endcan
-                    @can('device.index')
+                    @can('device.create')
                         <li class="@yield('equipo_create')"><a href="{{ route('device.create') }}"><i class="fa fa-circle-o"></i> Registrar equipo</a></li>
                     @endcan
                 </ul>

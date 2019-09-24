@@ -103,7 +103,7 @@
                 </div>
                 <div class="form-group">
                   <label>Código</label>
-                  <input type="text" class="form-control" name="codigo_pat" id="codigo_pat" required placeholder="Ejm: 11010010101">
+                  <input type="text" class="form-control" name="codigo_pat" id="codigo_pat" required placeholder="Ejm: 740899700361">
                 </div>
                 <div class="form-group">
                   <label>ubicación</label>
@@ -177,15 +177,15 @@
               <div class="box-body">
                 <div class="form-group">
                   <label>Dominio</label>
-                  <input type="text" class="form-control" name="dominio" id="dominio" placeholder="mdcgal" value="mdcgal">
+                  <input type="text" class="form-control" name="dominio" id="dominio" placeholder="Ejm: mdcgal" value="mdcgal">
                 </div>
                 <div class="form-group">
                   <label>Nombre de equipo</label>
-                  <input type="text" class="form-control" name="nom_equipo" id="nom_equipo" placeholder="MDCGAL0001">
+                  <input type="text" class="form-control" name="nom_equipo" id="nom_equipo" placeholder="Ejm: MDCGAL0001">
                 </div>
                 <div class="form-group">
                   <label>Nombre usuario</label>
-                  <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Usuario">
+                  <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Ejm: TPEREZC">
                 </div>
                 <div class="form-group">
                   <label>Acceso a internet</label>
@@ -223,7 +223,7 @@
                 </div>
                 <div class="form-group">
                   <label>Licencia de sistema operativo</label>
-                  <input type="text" class="form-control" name="licencia_w" id="licencia_w" placeholder="Licencia de SO">
+                  <input type="text" class="form-control" name="licencia_w" id="licencia_w" placeholder="Ejm: xrgrGt3r54wdsfX">
                 </div>
                 <div class="form-group">
                   <label>Procesador</label>

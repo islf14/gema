@@ -104,7 +104,7 @@
                 </div>
                 <div class="form-group">
                   <label>Código</label>
-                  <input type="text" class="form-control" name="codigo_pat" id="codigo_pat" required placeholder="Ejm: 11010010101" value="{{ $equipo[0]->codigo_pat }}">
+                  <input type="text" class="form-control" name="codigo_pat" id="codigo_pat" required placeholder="Ejm: 740899700361" value="{{ $equipo[0]->codigo_pat }}">
                 </div>
                 <div class="form-group">
                   <label>ubicación</label>
@@ -178,15 +178,15 @@
               <div class="box-body">
                 <div class="form-group">
                   <label>Dominio</label>
-                  <input type="text" class="form-control" name="dominio" id="dominio" placeholder="mdcgal" value="mdcgal" value="{{ $equipo[0]->dominio }}">
+                  <input type="text" class="form-control" name="dominio" id="dominio" placeholder="Ejm: mdcgal" value="{{ $equipo[0]->dominio }}">
                 </div>
                 <div class="form-group">
                   <label>Nombre de equipo</label>
-                  <input type="text" class="form-control" name="nom_equipo" id="nom_equipo" placeholder="MDCGAL0001" value="{{ $equipo[0]->nom_equipo }}">
+                  <input type="text" class="form-control" name="nom_equipo" id="nom_equipo" placeholder="Ejm: MDCGAL0001" value="{{ $equipo[0]->nom_equipo }}">
                 </div>
                 <div class="form-group">
                   <label>Nombre usuario</label>
-                  <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Usuario" value="{{ $equipo[0]->usuario }}">
+                  <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Ejm: TPEREZC" value="{{ $equipo[0]->usuario }}">
                 </div>
                 <div class="form-group">
                   <label>Acceso a internet</label>
@@ -224,7 +224,7 @@
                 </div>
                 <div class="form-group">
                   <label>Licencia de sistema operativo</label>
-                  <input type="text" class="form-control" name="licencia_w" id="licencia_w" placeholder="Licencia de SO" value="{{ $equipo[0]->licencia_w }}">
+                  <input type="text" class="form-control" name="licencia_w" id="licencia_w" placeholder="Ejm: xrgrGt3r54wdsfX" value="{{ $equipo[0]->licencia_w }}">
                 </div>
                 <div class="form-group">
                   <label>Procesador</label>
