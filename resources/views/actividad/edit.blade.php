@@ -1,7 +1,7 @@
 @extends('layouts.gema')
 
 @section('title')
-  Registrar Actividad | GEMA
+  Editar Actividad | GEMA
 @endsection
 
 @section('link')
@@ -33,7 +33,7 @@
 
     <!-- Main content -->
     <section class="content">
-      <form role="form" method="POST" action="{{ route('activity.store') }}">
+      <form role="form" method="POST" action="{{ route('activity.update',$registro[0]->id) }}">
         @csrf
         <div class="row">
 
@@ -47,11 +47,11 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Seleccionar equipo</label>
-                      <select class="form-control select2" name="idEquipo" id="idEquipo" style="width: 100%;">
-                        <option value="" selected="selected">Seleccione...</option>
-                          @foreach ($equipo as $item)
+                      <select class="form-control select2" name="idEquipo" id="idEquipo" readonly style="width: 100%;">
+                        <option value="{{ $registro[0]->idEquipo }}" selected="selected">{{ $registro[0]->codigo_pat }}</option>
+                          {{-- @foreach ($equipo as $item)
                             <option value="{{ $item->id}}">{{ $item->codigo_pat}}</option>
-                          @endforeach
+                          @endforeach --}}
                       </select>
                     </div>
                   </div>
@@ -62,7 +62,7 @@
                         <div class="input-group-addon">
                           <i class="fa fa-calendar"></i>
                         </div>
-                        <input type="text" class="form-control pull-right" name="fecha" id="fecha" value="{{ $fecha }}">
+                        <input type="text" class="form-control pull-right" name="fecha" id="fecha" readonly value="{{ $registro[0]->fecha }}">
                       </div>
                     </div>
                   </div>
@@ -81,21 +81,21 @@
                   <label>Tipo de Mantenimiento</label>
                   <select class="form-control" name="tipoMant" id="tipoMant">
                     <option value="" selected>Seleccione...</option>
-                    <option value="Preventivo" >Preventivo</option>
-                    <option value="Correctivo" >Correctivo</option>
+                    <option {{ ($registro[0]->tipoMant == "Preventivo") ? "Selected":""  }} value="Preventivo" >Preventivo</option>
+                    <option {{ ($registro[0]->tipoMant == "Correctivo") ? "Selected":""  }} value="Correctivo" >Correctivo</option>
                   </select>
                 </div>
                 <div class="form-group">
                   <label for="problema">Problema manifestado por el usuario</label><br>
-                  <textarea class="form-control" name="problema" id="problema"  placeholder="Problema manifestado por el usuario..."></textarea>
+                  <textarea class="form-control" name="problema" id="problema"  placeholder="Problema manifestado por el usuario...">{{ $registro[0]->problema }}</textarea>
                 </div>
                 <div class="form-group">
                   <label for="problema_real">Problema real encontrado</label><br>
-                  <textarea class="form-control" name="problema_real" id="problema_real"  placeholder="Problema real encontrado por el técnico en el equipo..."></textarea>
+                  <textarea class="form-control" name="problema_real" id="problema_real"  placeholder="Problema real encontrado por el técnico en el equipo...">{{ $registro[0]->problema_real }}</textarea>
                 </div>
                 <div class="form-group">
                   <label for="solucion">Solución</label><br>
-                  <textarea class="form-control" name="solucion" id="solucion"  placeholder="Solución dada al problema..."></textarea>
+                  <textarea class="form-control" name="solucion" id="solucion"  placeholder="Solución dada al problema...">{{ $registro[0]->solucion }}</textarea>
                 </div>
               </div>
             </div>
@@ -110,12 +110,12 @@
                 <div class="form-group">
                   <label>Encargado de hacer mantenimiento</label>
                   <select class="form-control" name="user_id" id="user_id" readonly>
-                    <option value="{{ Auth::user()->id }}" selected>{{ Auth::user()->name }}</option>
+                    <option value="{{ $registro[0]->idUser }}" selected>{{ $registro[0]->name }}</option>
                   </select>
                 </div>
                 <div class="form-group">
                   <label for="recomendaciones">Observaciones</label><br>
-                  <textarea class="form-control" name="recomendaciones" id="recomendaciones"  placeholder="Observaciones y recomendaciones..."></textarea>
+                  <textarea class="form-control" name="recomendaciones" id="recomendaciones"  placeholder="Observaciones y recomendaciones...">{{ $registro[0]->recomendaciones }}</textarea>
                 </div>
               </div>
             </div>
@@ -124,7 +124,7 @@
           <div class="col-md-12">
             <div class="box-footer">
               <a class="btn btn-default" href="javascript:window.history.back();">Cancelar</a>
-              <button type="submit" class="btn btn-info pull-right">Guardar</button>
+              <button type="submit" class="btn btn-info pull-right">Actualizar</button>
             </div>
           </div>
 

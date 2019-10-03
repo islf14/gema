@@ -65,23 +65,27 @@
                 <thead>
                   <tr>
                     <th>Id</th>
+                    <th>Cod Equipo</th>
                     <th>Problema</th>
                     <th>Solución</th>
                     <th>Fecha</th>
                     <th>Tipo mant.</th>
+                    <th>Usuario</th>
                     <th>Ver</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($registro as $item)
+                  @foreach ($registros as $item)
                       <tr>
                         <td>{{ $item->id }}</td>
+                        <td>{{ $item->codigo_pat }}</td>
                         <td>{{ $item->problema }}</td>
                         <td>{{ $item->solucion }}</td>
                         <td>{{ $item->fecha }}</td>
                         <td>{{ $item->tipoMant }}</td>
+                        <td>{{ $item->name }}</td>
                         <td><a href="{{ route('activity.show',$item->id) }}" class="btn btn-xs btn-info"><i class='fa fa-newspaper-o'></i> Ver</a></td>
                         <td><a href="{{ route('activity.edit',$item->id) }}" class='btn btn-xs btn-success'><i class='fa fa-edit'></i> Editar</a></td>
 

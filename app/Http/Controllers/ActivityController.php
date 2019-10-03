@@ -17,9 +17,19 @@ class ActivityController extends Controller
      */
     public function index()
     {
-        $registro = Activity::all();
-        // dd($registro);
-        return view('actividad.index',compact('registro'));
+        $registros = DB::connection('mysql')->table('tb_registro as tr')
+            ->join('tb_equipo as te', 'te.id', '=', 'tr.idEquipo')
+            ->join('users as u','u.id','=','tr.user_id')
+            ->select('tr.id',
+            'tr.problema',
+            'tr.solucion',
+            'tr.fecha',
+            'tr.tipoMant',
+            'te.codigo_pat',
+            'u.name')
+            ->get();
+            // dd($registro);
+        return view('actividad.index',compact('registros'));
     }
 
     /**
@@ -60,7 +70,23 @@ class ActivityController extends Controller
      */
     public function show($id)
     {
-        //
+        $registro = DB::connection('mysql')->table('tb_registro as tr')
+            ->join('tb_equipo as te', 'te.id', '=', 'tr.idEquipo')
+            ->join('users as u','u.id','=','tr.user_id')
+            ->select('tr.id',
+            'tr.problema',
+            'tr.problema_real',
+            'tr.solucion',
+            'tr.fecha',
+            'tr.tipoMant',
+            'tr.recomendaciones',
+            'tr.idEquipo',
+            'te.codigo_pat',
+            'u.name')
+            ->where('tr.id','=',"$id")
+            ->get();
+            // dd($registro);
+        return view('actividad.show',compact('registro'));
     }
 
     /**
@@ -71,7 +97,24 @@ class ActivityController extends Controller
      */
     public function edit($id)
     {
-        //
+        $registro = DB::connection('mysql')->table('tb_registro as tr')
+            ->join('tb_equipo as te', 'te.id', '=', 'tr.idEquipo')
+            ->join('users as u','u.id','=','tr.user_id')
+            ->select('tr.id',
+            'tr.problema',
+            'tr.problema_real',
+            'tr.solucion',
+            'tr.fecha',
+            'tr.tipoMant',
+            'tr.recomendaciones',
+            'tr.idEquipo',
+            'te.codigo_pat',
+            'u.id AS idUser',
+            'u.name')
+            ->where('tr.id','=',"$id")
+            ->get();
+            // dd($registro);
+        return view('actividad.edit',compact('registro'));
     }
 
     /**
@@ -83,7 +126,8 @@ class ActivityController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Activity::find($id)->update($request->all());
+        return redirect()->route('activity.index'); //->with('info', 'Éxito: Actualizado correctamente.');
     }
 
     /**
